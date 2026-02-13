@@ -64,6 +64,8 @@ export const onRequestPost = async (context: {
       <p>${mensaje || "(Sin mensaje)"}</p>
     `;
 
+    const recipientEmail = env.CONTACT_EMAIL || "juancpulidos@gmail.com";
+
     const resendRes = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -71,8 +73,8 @@ export const onRequestPost = async (context: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Conversion Chat <conversemos@conversionchat.co>",
-        to: [env.CONTACT_EMAIL],
+        from: "Conversion Chat <onboarding@resend.dev>",
+        to: [recipientEmail],
         subject: `Nuevo contacto: ${empresa}`,
         html: emailHtml,
       }),
@@ -80,9 +82,16 @@ export const onRequestPost = async (context: {
 
     if (!resendRes.ok) {
       const err = await resendRes.text();
-      console.error("Resend error:", err);
+      console.error("❌ Resend error:", err);
+      console.error("❌ Status:", resendRes.status);
+      console.error("❌ Headers:", Object.fromEntries(resendRes.headers));
+      
       return new Response(
-        JSON.stringify({ error: "Error al enviar email" }),
+        JSON.stringify({ 
+          error: "Error al enviar email",
+          details: err,  // ← Agrega esto temporalmente para debugging
+          status: resendRes.status
+        }),
         {
           status: 500,
           headers: {
