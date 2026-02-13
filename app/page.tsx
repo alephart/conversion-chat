@@ -95,6 +95,10 @@ const howItWorks = [
 // ─── Página ───────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
+
+  const phone = "573224567080";
+  const message = "Hola, quiero más información";
+
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
@@ -393,9 +397,13 @@ export default function HomePage() {
                 correcto para llevar al paciente al siguiente paso.
               </p>
               <Button asChild size="lg" className="glow-cyan">
-                <Link href="#registro">
+                <a
+                  href={`https://wa.me/${phone}?text=${encodeURIComponent(message)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Quiero verlo funcionar <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+                </a>                
               </Button>
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-border">
