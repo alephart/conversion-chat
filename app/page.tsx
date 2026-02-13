@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import RegistroForm from "@/components/sections/RegistroForm";
 import {
@@ -97,39 +98,95 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-background py-20 sm:py-28 lg:py-36">
-        <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-primary/70">
-            IA especializada para clínicas médicas
-          </p>
-          <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            Tus pacientes ya te están escribiendo.
-            <br />
-            <span className="text-primary">Lo que falla es la conversación.</span>
-          </h1>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-            WhatsApp no está diseñado para convertir pacientes.{" "}
-            <strong className="text-foreground">Conversion Chat sí.</strong>
-          </p>
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button asChild size="lg">
-              <Link href="#demo">
-                Ver demo en vivo <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="#por-que">
-                Quiero entender por qué pierdo pacientes
-              </Link>
-            </Button>
+      <section className="relative min-h-[90vh] overflow-hidden bg-[#060c1f]">
+        {/* Grid tech de fondo */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#00c8e8 1px, transparent 1px), linear-gradient(90deg, #00c8e8 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+        {/* Glow central */}
+        <div className="pointer-events-none absolute left-1/4 top-1/3 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl" />
+        <div className="pointer-events-none absolute right-1/4 top-1/2 h-64 w-64 rounded-full bg-accent/10 blur-3xl" />
+
+        <div className="relative mx-auto grid min-h-[90vh] max-w-6xl grid-cols-1 items-center gap-8 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
+          {/* Texto */}
+          <div className="text-center lg:text-left">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-primary">
+              IA especializada para clínicas médicas
+            </p>
+            <h1 className="mb-6 font-display text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+              Tus pacientes ya
+              <br />
+              te están escribiendo.
+              <br />
+              <span className="text-brand-gradient">
+                Lo que falla es la conversación.
+              </span>
+            </h1>
+            <p className="mx-auto mb-8 max-w-xl text-lg text-white/70 lg:mx-0">
+              WhatsApp no está diseñado para convertir pacientes.{" "}
+              <strong className="text-white">Conversion Chat sí.</strong>
+            </p>
+            <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
+              <Button
+                asChild
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/80 glow-cyan font-semibold"
+              >
+                <Link href="#demo">
+                  Ver demo en vivo <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-white/20 text-white hover:bg-white/5"
+              >
+                <Link href="#por-que">
+                  ¿Por qué pierdo pacientes?
+                </Link>
+              </Button>
+            </div>
+
+            {/* Stats rápidas */}
+            <div className="mt-12 grid grid-cols-3 gap-4 border-t border-white/10 pt-8">
+              {[
+                { stat: "60%", label: "Menos consultas repetitivas" },
+                { stat: "24/7", label: "Sin horarios ni suplentes" },
+                { stat: "3 días", label: "Tiempo de implementación" },
+              ].map((item) => (
+                <div key={item.label} className="text-center lg:text-left">
+                  <p className="text-2xl font-black text-primary">{item.stat}</p>
+                  <p className="text-xs text-white/50">{item.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Personaje */}
+          <div className="relative flex justify-center lg:justify-end">
+            <div className="pointer-events-none absolute inset-0 rounded-full bg-primary/5 blur-2xl" />
+            <Image
+              src="/images/logos/personaje.png"
+              alt="Agente IA Conversion Chat"
+              width={520}
+              height={620}
+              className="relative z-10 h-auto max-h-[620px] w-auto drop-shadow-2xl"
+              priority
+            />
           </div>
         </div>
       </section>
 
       {/* ── GOLPE DE REALIDAD ─────────────────────────────────────────────── */}
-      <section id="por-que" className="bg-muted/40 py-20 sm:py-24">
+      <section id="por-que" className="bg-[#0d1b3e] py-20 sm:py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="mb-6 font-display text-3xl font-black tracking-tight sm:text-4xl">
             La mayoría de clínicas no pierden pacientes por precios.
             <br />
             <span className="text-primary">Los pierden por cómo responden.</span>
@@ -143,15 +200,15 @@ export default function HomePage() {
             ].map((item) => (
               <div
                 key={item}
-                className="flex items-start gap-3 rounded-lg border border-border bg-background p-4"
+                className="flex items-start gap-3 rounded-lg border border-white/10 bg-[#060c1f] p-4"
               >
                 <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
-                <span className="text-sm">{item}</span>
+                <span className="text-sm text-white/80">{item}</span>
               </div>
             ))}
           </div>
-          <blockquote className="rounded-2xl bg-primary/10 p-8 text-center">
-            <p className="text-xl font-semibold italic leading-relaxed sm:text-2xl">
+          <blockquote className="rounded-2xl border border-primary/30 bg-primary/5 p-8 text-center glow-cyan">
+            <p className="text-xl font-semibold italic leading-relaxed text-white sm:text-2xl">
               &ldquo;Si tu WhatsApp cierra a la misma velocidad que una
               recepcionista cansada, estás dejando dinero sobre la mesa.&rdquo;
             </p>
@@ -160,17 +217,17 @@ export default function HomePage() {
       </section>
 
       {/* ── QUÉ ES + FEATURES ────────────────────────────────────────────── */}
-      <section className="py-20 sm:py-28">
+      <section className="bg-[#060c1f] py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="mb-4 font-display text-3xl font-black tracking-tight sm:text-4xl">
               No es un bot. No es automatización básica.
               <br />
-              <span className="text-primary">Es un agente que convierte.</span>
+              <span className="text-brand-gradient">Es un agente que convierte.</span>
             </h2>
-            <p className="mx-auto max-w-2xl text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-white/60">
               Conversion Chat es un{" "}
-              <strong className="text-foreground">
+              <strong className="text-white">
                 agente conversacional entrenado para vender citas médicas
               </strong>
               , respetando el criterio clínico y el lenguaje profesional.
@@ -179,42 +236,42 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Cards de capacidades */}
-          <div className="mb-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Cards */}
+          <div className="mb-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((f) => (
               <div
                 key={f.title}
-                className="rounded-xl border border-border bg-background p-6 shadow-sm"
+                className="rounded-xl border border-white/10 bg-[#0d1b3e] p-6 transition-all hover:border-primary/40 hover:glow-cyan"
               >
                 <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
                   {f.icon}
                 </div>
-                <h3 className="mb-2 font-semibold">{f.title}</h3>
-                <p className="text-sm text-muted-foreground">{f.description}</p>
+                <h3 className="mb-2 font-semibold text-white">{f.title}</h3>
+                <p className="text-sm text-white/60">{f.description}</p>
               </div>
             ))}
           </div>
 
-          {/* Sí hace / No hace */}
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="rounded-2xl border border-border bg-card p-6">
+          {/* Sí / No hace */}
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-primary/30 bg-[#0d1b3e] p-6">
               <h3 className="mb-4 text-lg font-bold text-primary">✔ Sí hace</h3>
               <ul className="space-y-3">
                 {siHace.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                    <span className="text-sm">{item}</span>
+                    <span className="text-sm text-white/80">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl border border-border bg-card p-6">
+            <div className="rounded-2xl border border-destructive/30 bg-[#0d1b3e] p-6">
               <h3 className="mb-4 text-lg font-bold text-destructive">✖ No hace</h3>
               <ul className="space-y-3">
                 {noHace.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
-                    <span className="text-sm">{item}</span>
+                    <span className="text-sm text-white/80">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -224,36 +281,36 @@ export default function HomePage() {
       </section>
 
       {/* ── PARA QUIÉN ────────────────────────────────────────────────────── */}
-      <section className="bg-muted/40 py-20 sm:py-24">
+      <section className="bg-[#0d1b3e] py-20 sm:py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-10 text-center text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="mb-10 text-center font-display text-3xl font-black tracking-tight sm:text-4xl">
             Esto es para ti si…
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {paraQuien.map((item) => (
               <div
                 key={item}
-                className="flex items-start gap-3 rounded-lg border border-border bg-background p-4"
+                className="flex items-start gap-3 rounded-lg border border-white/10 bg-[#060c1f] p-4"
               >
                 <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <span className="text-sm">{item}</span>
+                <span className="text-sm text-white/80">{item}</span>
               </div>
             ))}
           </div>
           <blockquote className="mt-12 text-center">
-            <p className="text-xl font-semibold italic sm:text-2xl">
+            <p className="text-xl font-semibold italic text-white sm:text-2xl">
               &ldquo;La conversión no se pierde en la consulta.
               <br />
-              Se pierde mucho antes.&rdquo;
+              <span className="text-primary">Se pierde mucho antes.&rdquo;</span>
             </p>
           </blockquote>
         </div>
       </section>
 
-      {/* ── STORYTELLING (estructura original mantenida) ──────────────────── */}
-      <section className="py-20 sm:py-28">
+      {/* ── STORYTELLING ──────────────────────────────────────────────────── */}
+      <section className="bg-[#060c1f] py-20 sm:py-28">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-16 text-center text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="mb-16 text-center font-display text-3xl font-black tracking-tight sm:text-4xl">
             De la frustración a la eficiencia
           </h2>
           <div className="space-y-12">
@@ -265,13 +322,13 @@ export default function HomePage() {
                 }`}
               >
                 <div className="flex-shrink-0">
-                  <span className="text-5xl font-black text-primary/20">
+                  <span className="font-display text-6xl font-black text-primary/20">
                     {step.number}
                   </span>
                 </div>
-                <div>
-                  <h3 className="mb-3 text-xl font-semibold">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.body}</p>
+                <div className="rounded-xl border border-white/10 bg-[#0d1b3e] p-6">
+                  <h3 className="mb-3 text-xl font-bold text-white">{step.title}</h3>
+                  <p className="text-white/60">{step.body}</p>
                 </div>
               </div>
             ))}
@@ -280,68 +337,94 @@ export default function HomePage() {
       </section>
 
       {/* ── CÓMO FUNCIONA ─────────────────────────────────────────────────── */}
-      <section className="bg-muted/40 py-20 sm:py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-4 text-center text-3xl font-bold tracking-tight sm:text-4xl">
+      <section className="bg-[#0d1b3e] py-20 sm:py-24">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-4 text-center font-display text-3xl font-black tracking-tight sm:text-4xl">
             Así convierte Conversion Chat
           </h2>
-          <p className="mx-auto mb-12 max-w-xl text-center text-muted-foreground">
+          <p className="mx-auto mb-12 max-w-xl text-center text-white/60">
             Sin desgaste humano. Sin improvisación. Sin horarios.
           </p>
-          <div className="space-y-4">
-            {howItWorks.map((s) => (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {howItWorks.map((s, i) => (
               <div
                 key={s.step}
-                className="flex items-start gap-5 rounded-xl border border-border bg-background p-5 shadow-sm"
+                className={`rounded-xl border border-white/10 bg-[#060c1f] p-5 ${
+                  i === 4 ? "sm:col-span-2 lg:col-span-1" : ""
+                }`}
               >
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-black text-primary">
                   {s.step}
                 </div>
-                <div>
-                  <h3 className="mb-1 font-semibold">{s.title}</h3>
-                  <p className="text-sm text-muted-foreground">{s.body}</p>
-                </div>
+                <h3 className="mb-1 font-semibold text-white">{s.title}</h3>
+                <p className="text-sm text-white/60">{s.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── SOCIAL PROOF (estructura original mantenida) ──────────────────── */}
-      <section className="py-16 sm:py-20">
+      {/* ── AGENTE EN ACCIÓN (imagen) ──────────────────────────────────────── */}
+      <section className="bg-[#060c1f] py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-3">
-            {[
-              { stat: "60%", label: "Reducción en consultas repetitivas al equipo" },
-              { stat: "24/7", label: "Disponibilidad sin recepcionista extra" },
-              { stat: "3 días", label: "Tiempo promedio de implementación" },
-            ].map((item) => (
-              <div key={item.label} className="text-center">
-                <p className="text-5xl font-black tracking-tight text-primary">
-                  {item.stat}
-                </p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {item.label}
-                </p>
-              </div>
-            ))}
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <div>
+              <h2 className="mb-4 font-display text-3xl font-black tracking-tight sm:text-4xl">
+                Muchos mensajes,
+                <br />
+                <span className="text-primary">pocas citas. Eso cambia.</span>
+              </h2>
+              <p className="mb-6 text-white/60">
+                Conversion Chat gestiona cada conversación de WhatsApp como lo
+                haría tu mejor asesor: con criterio, rapidez y el lenguaje
+                correcto para llevar al paciente al siguiente paso.
+              </p>
+              <Button asChild size="lg" className="glow-cyan">
+                <Link href="#registro">
+                  Quiero verlo funcionar <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+            <div className="relative overflow-hidden rounded-2xl border border-white/10">
+              <Image
+                src="/images/assets/agente-chat.jpeg"
+                alt="Agente Conversion Chat gestionando conversaciones"
+                width={640}
+                height={480}
+                className="h-auto w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#060c1f]/60 to-transparent" />
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── DEMO EN VIVO ──────────────────────────────────────────────────── */}
-      <section id="demo" className="bg-primary py-20 sm:py-24">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
+      <section id="demo" className="relative overflow-hidden bg-[#0d1b3e] py-20 sm:py-24">
+        <div className="pointer-events-none absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: "linear-gradient(#00c8e8 1px, transparent 1px), linear-gradient(90deg, #00c8e8 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl" />
+        <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">
+            Inteligencia Artificial EN ACCIÓN
+          </p>
+          <h2 className="mb-4 font-display text-3xl font-black tracking-tight text-white sm:text-4xl">
             Pruébalo como paciente
           </h2>
-          <p className="mb-8 text-lg text-primary-foreground/80">
+          <p className="mb-8 text-lg text-white/60">
             Antes de creer, conversa. Antes de decidir, experimenta.
             <br />
-            Habla con nuestra clínica ficticia y vive la experiencia real de
-            Conversion Chat.
+            Habla con nuestra clínica ficticia y vive la experiencia real.
           </p>
-          <Button asChild size="lg" variant="secondary">
+          <Button
+            asChild
+            size="lg"
+            className="bg-brand-gradient text-white hover:opacity-90 glow-magenta font-bold"
+          >
             <Link href="#registro">
               Probar cómo sí se convierte <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
@@ -350,12 +433,14 @@ export default function HomePage() {
       </section>
 
       {/* ── FORMULARIO ────────────────────────────────────────────────────── */}
-      <section id="registro" className="py-20 sm:py-28">
+      <section id="registro" className="bg-[#060c1f] py-20 sm:py-28">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-4 text-center text-3xl font-bold tracking-tight sm:text-4xl">
-            Quiero que mi clínica convierta más
+          <h2 className="mb-4 text-center font-display text-3xl font-black tracking-tight text-white sm:text-4xl">
+            Quiero que mi clínica
+            <br />
+            <span className="text-brand-gradient">convierta más</span>
           </h2>
-          <p className="mb-10 text-center text-muted-foreground">
+          <p className="mb-10 text-center text-white/60">
             Déjanos tus datos y en menos de 24 h te mostramos Conversion Chat
             funcionando con casos reales de tu especialidad.
           </p>
@@ -364,15 +449,15 @@ export default function HomePage() {
       </section>
 
       {/* ── IA RESPONSABLE ────────────────────────────────────────────────── */}
-      <section className="bg-muted/40 py-12 sm:py-16">
+      <section className="bg-[#0d1b3e] py-12 sm:py-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary">
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary">
             <Shield className="h-3.5 w-3.5" /> Uso responsable de IA
           </div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-white/50">
             Conversion Chat utiliza inteligencia artificial como herramienta de
             apoyo a la comunicación,{" "}
-            <strong className="text-foreground">
+            <strong className="text-white/80">
               no como sustituto del criterio médico
             </strong>
             . No realiza diagnósticos, no prescribe tratamientos y no reemplaza
