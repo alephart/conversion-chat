@@ -92,8 +92,8 @@ export default function RegistroForm() {
     return (
       <div className="rounded-xl border border-border bg-card p-8 text-center shadow-sm">
         <div className="mb-4 text-4xl">✅</div>
-        <h3 className="mb-2 text-xl font-semibold">¡Solicitud recibida!</h3>
-        <p className="text-muted-foreground">
+        <h3 className="mb-2 text-2xl font-semibold">¡Solicitud recibida!</h3>
+        <p className="text-lg text-muted-foreground">
           Nos pondremos en contacto contigo en menos de 24 horas.
         </p>
       </div>
@@ -116,7 +116,7 @@ export default function RegistroForm() {
             onChange={(e) => setForm({ ...form, nombre: e.target.value })}
           />
           {errors.nombre && (
-            <p className="text-sm text-destructive">{errors.nombre}</p>
+            <p className="text-base text-destructive">{errors.nombre}</p>
           )}
         </div>
 
@@ -142,7 +142,7 @@ export default function RegistroForm() {
             onChange={(e) => setForm({ ...form, email: e.target.value })}
           />
           {errors.email && (
-            <p className="text-sm text-destructive">{errors.email}</p>
+            <p className="text-base text-destructive">{errors.email}</p>
           )}
         </div>
 
@@ -168,7 +168,7 @@ export default function RegistroForm() {
             onChange={(e) => setForm({ ...form, empresa: e.target.value })}
           />
           {errors.empresa && (
-            <p className="text-sm text-destructive">{errors.empresa}</p>
+            <p className="text-base text-destructive">{errors.empresa}</p>
           )}
         </div>
 
@@ -188,7 +188,7 @@ export default function RegistroForm() {
             </SelectContent>
           </Select>
           {errors.interes && (
-            <p className="text-sm text-destructive">{errors.interes}</p>
+            <p className="text-base text-destructive">{errors.interes}</p>
           )}
         </div>
 
@@ -208,7 +208,7 @@ export default function RegistroForm() {
           {loading ? "Enviando..." : "Solicitar información"}
         </Button>
 
-        <p className="text-center text-xs text-muted-foreground">
+        <p className="text-center text-sm text-muted-foreground">
           Al enviar este formulario aceptas nuestra{" "}
           <a
             href="/politica-privacidad"

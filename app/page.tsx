@@ -19,25 +19,25 @@ import {
 
 const features = [
   {
-    icon: <Bot className="h-6 w-6" />,
+    icon: <Bot className="h-7 w-7 sm:h-8 sm:w-8" />,
     title: "Habla como humano",
     description:
       "Responde con lenguaje médico profesional, entiende el contexto y recuerda cada conversación. Disponible 24/7 sin que nadie se agote.",
   },
   {
-    icon: <Clock className="h-6 w-6" />,
+    icon: <Clock className="h-7 w-7 sm:h-8 sm:w-8" />,
     title: "Respuesta en segundos",
     description:
       "Ningún paciente espera. Ninguna consulta queda sin respuesta. Conversion Chat reacciona al instante, a cualquier hora del día.",
   },
   {
-    icon: <Filter className="h-6 w-6" />,
+    icon: <Filter className="h-7 w-7 sm:h-8 sm:w-8" />,
     title: "Filtra intención real",
     description:
       "Separa a los curiosos de los pacientes con intención real de consulta. Tu equipo solo atiende leads calificados.",
   },
   {
-    icon: <BarChart3 className="h-6 w-6" />,
+    icon: <BarChart3 className="h-7 w-7 sm:h-8 sm:w-8" />,
     title: "Analítica de conversaciones",
     description:
       "Conoce qué preguntan tus pacientes, dónde se frena la conversación y cómo mejorar cada interacción para cerrar más citas.",
@@ -189,10 +189,10 @@ export default function HomePage() {
                   i < 2 ? "sm:border-r sm:border-border" : ""
                 }`}
               >
-                <p className="font-display text-5xl font-black text-primary sm:text-6xl">
+                <p className="font-display text-6xl font-black text-primary sm:text-7xl">
                   {item.stat}
                 </p>
-                <p className="max-w-[180px] text-sm text-muted-foreground">
+                <p className="max-w-[180px] text-base text-muted-foreground">
                   {item.label}
                 </p>
               </div>
@@ -220,7 +220,7 @@ export default function HomePage() {
                 className="flex items-start gap-3 rounded-lg border border-border bg-background p-4"
               >
                 <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
-                <span className="text-sm text-foreground/80">{item}</span>
+                <span className="text-base text-foreground/80">{item}</span>
               </div>
             ))}
           </div>
@@ -260,11 +260,11 @@ export default function HomePage() {
                 key={f.title}
                 className="rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/40 hover:glow-cyan"
               >
-                <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
+                <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 sm:p-4 text-primary">
                   {f.icon}
                 </div>
-                <h3 className="mb-2 font-semibold text-foreground">{f.title}</h3>
-                <p className="text-sm text-muted-foreground">{f.description}</p>
+                <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">{f.title}</h3>
+                <p className="text-base text-muted-foreground">{f.description}</p>
               </div>
             ))}
           </div>
@@ -277,7 +277,7 @@ export default function HomePage() {
                 {siHace.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                    <span className="text-sm text-foreground/80">{item}</span>
+                    <span className="text-base text-foreground/80">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -288,7 +288,7 @@ export default function HomePage() {
                 {noHace.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
-                    <span className="text-sm text-foreground/80">{item}</span>
+                    <span className="text-base text-foreground/80">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -310,7 +310,7 @@ export default function HomePage() {
                 className="flex items-start gap-3 rounded-lg border border-border bg-background p-4"
               >
                 <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <span className="text-sm text-foreground/80">{item}</span>
+                <span className="text-base text-foreground/80">{item}</span>
               </div>
             ))}
           </div>
@@ -339,7 +339,7 @@ export default function HomePage() {
                 }`}
               >
                 <div className="flex-shrink-0">
-                  <span className="font-display text-6xl font-black text-primary/20">
+                  <span className="font-display text-8xl sm:text-9xl font-black text-primary/20">
                     {step.number}
                   </span>
                 </div>
@@ -359,7 +359,7 @@ export default function HomePage() {
           <h2 className="mb-4 text-center font-display text-3xl font-black tracking-tight sm:text-4xl">
             Así convierte Conversion Chat
           </h2>
-          <p className="mx-auto mb-12 max-w-xl text-center text-muted-foreground">
+          <p className="mx-auto mb-12 max-w-xl text-center text-lg text-muted-foreground">
             Sin desgaste humano. Sin improvisación. Sin horarios.
           </p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -370,11 +370,11 @@ export default function HomePage() {
                   i === 4 ? "sm:col-span-2 lg:col-span-1" : ""
                 }`}
               >
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-black text-primary">
+                <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-base font-black text-primary">
                   {s.step}
                 </div>
-                <h3 className="mb-1 font-semibold text-foreground">{s.title}</h3>
-                <p className="text-sm text-muted-foreground">{s.body}</p>
+                <h3 className="mb-1 text-lg font-semibold text-foreground">{s.title}</h3>
+                <p className="text-base text-muted-foreground">{s.body}</p>
               </div>
             ))}
           </div>
@@ -476,10 +476,10 @@ export default function HomePage() {
       {/* ── IA RESPONSABLE ────────────────────────────────────────────────── */}
       <section className="bg-muted py-12 sm:py-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary">
-            <Shield className="h-3.5 w-3.5" /> Uso responsable de IA
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-primary">
+            <Shield className="h-4 w-4" /> Uso responsable de IA
           </div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             Conversion Chat utiliza inteligencia artificial como herramienta de
             apoyo a la comunicación,{" "}
             <strong className="text-foreground/80">

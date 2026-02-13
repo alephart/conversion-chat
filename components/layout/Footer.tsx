@@ -22,7 +22,7 @@ export default function Footer() {
                 alt="Conversion Chat"
                 width={160}
                 height={54}
-                className="h-9 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity block dark:hidden"
+                className="h-11 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity block dark:hidden"
               />
               {/* Dark mode: logo blanco */}
               <Image
@@ -30,27 +30,27 @@ export default function Footer() {
                 alt="Conversion Chat"
                 width={160}
                 height={54}
-                className="h-9 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity hidden dark:block"
+                className="h-11 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity hidden dark:block"
               />
             </Link>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               IA aplicada a conversaciones médicas reales.
             </p>
           </div>
 
-          <nav className="flex flex-wrap justify-center gap-6">
+          <nav className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-4 md:gap-6">
             {footerLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="text-base text-muted-foreground transition-colors hover:text-foreground"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <p className="text-xs text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             &copy; {year} SANGO Laboratorio Creativo
           </p>
         </div>
