@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { PageTransition } from "@/components/layout/PageTransition";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -39,7 +40,9 @@ export default function RootLayout({
       <body className={`${nunito.variable} ${outfit.variable} ${plusJakarta.variable} antialiased`}>
         <ThemeProvider>
           <Navbar />
-          <main className="min-h-screen pt-16">{children}</main>
+          <main className="min-h-screen pt-16">
+            <PageTransition>{children}</PageTransition>
+          </main>
           <Footer />
         </ThemeProvider>
       </body>

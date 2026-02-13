@@ -165,7 +165,7 @@
     transition: background-color 0.3s ease, color 0.2s ease;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-nunito), var(--font-outfit), sans-serif;
+    font-family: var(--font-plus-jakarta), var(--font-nunito), var(--font-outfit), sans-serif;
   }
   input::placeholder,
   textarea::placeholder {
@@ -175,6 +175,24 @@
   .dark textarea::placeholder {
     color: oklch(0.55 0.06 240);
   }
+}
+
+/* ─── Transición de página ───────────────────────────────────────────────────── */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.animate-page-enter {
+  animation: page-enter 0.35s ease-out both;
 }
 
 /* ─── Utilidades de marca (invariantes al tema) ──────────────────────────────── */
