@@ -141,13 +141,9 @@ export default function HomePage() {
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/80 glow-cyan font-semibold"
               >
-                <a
-                  href={`https://wa.me/${phone}?text=${encodeURIComponent(message)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link href="#demo">
                   Ver demo en vivo <ArrowRight className="ml-2 h-4 w-4" />
-                </a> 
+                </Link>
               </Button>
               <Button
                 asChild
