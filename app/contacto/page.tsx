@@ -53,10 +53,10 @@ export default function ContactoPage() {
                 <div>
                   <h3 className="mb-1 font-semibold">Email directo</h3>
                   <a
-                    href="mailto:contacto@conversionchat.ai"
+                    href="mailto:hello@conversionchat.co"
                     className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
-                    contacto@conversionchat.ai
+                    hello@conversionchat.co
                   </a>
                 </div>
               </div>

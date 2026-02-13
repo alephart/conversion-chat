@@ -21,13 +21,13 @@ export default function Navbar() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          {/* Light mode: logo negro */}
+          {/* Light mode: logo color */}
           <Image
-            src="/images/logos/logo-negativo.png"
+            src="/images/logos/logo-normal.png"
             alt="Conversion Chat"
-            width={180}
-            height={60}
-            className="h-10 w-auto object-contain block dark:hidden"
+            width={200}
+            height={67}
+            className="h-11 w-auto object-contain block dark:hidden"
             priority
           />
           {/* Dark mode: logo blanco */}

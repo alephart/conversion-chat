@@ -48,10 +48,10 @@ export default function PoliticaPrivacidadPage() {
               <li>
                 <strong className="text-foreground">Correo de contacto:</strong>{" "}
                 <a
-                  href="mailto:contacto@conversionchat.ai"
+                  href="mailto:hello@conversionchat.co"
                   className="text-primary underline underline-offset-2"
                 >
-                  contacto@conversionchat.ai
+                  hello@conversionchat.co
                 </a>
               </li>
             </ul>
@@ -201,10 +201,10 @@ export default function PoliticaPrivacidadPage() {
               Para consultas relacionadas con esta política:
             </p>
             <a
-              href="mailto:contacto@conversionchat.ai"
+              href="mailto:hello@conversionchat.co"
               className="mt-2 inline-block text-primary underline underline-offset-2"
             >
-              contacto@conversionchat.ai
+              hello@conversionchat.co
             </a>
           </Section>
 

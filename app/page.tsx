@@ -98,7 +98,7 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[90vh] overflow-hidden bg-background">
+      <section className="relative min-h-[78vh] overflow-hidden bg-background">
         {/* Grid tech de fondo */}
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.07]"
@@ -112,13 +112,13 @@ export default function HomePage() {
         <div className="pointer-events-none absolute left-1/4 top-1/3 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl" />
         <div className="pointer-events-none absolute right-1/4 top-1/2 h-64 w-64 rounded-full bg-accent/10 blur-3xl" />
 
-        <div className="relative mx-auto grid min-h-[90vh] max-w-6xl grid-cols-1 items-center gap-8 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div className="relative mx-auto grid min-h-[78vh] max-w-6xl grid-cols-1 gap-8 px-4 pt-12 pb-0 sm:px-6 lg:grid-cols-2 lg:px-8">
           {/* Texto */}
-          <div className="text-center lg:text-left">
+          <div className="self-center pb-8 text-center lg:text-left">
             <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-primary">
               IA especializada para clínicas médicas
             </p>
-            <h1 className="mb-6 font-display text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="mb-6 font-display text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl lg:text-5xl">
               Tus pacientes ya
               <br />
               te están escribiendo.
@@ -127,9 +127,9 @@ export default function HomePage() {
                 Lo que falla es la conversación.
               </span>
             </h1>
-            <p className="mx-auto mb-8 max-w-xl text-lg text-muted-foreground lg:mx-0">
+            <p className="mx-auto mb-8 max-w-xl text-lg text-muted-foreground text-pretty lg:mx-0">
               WhatsApp no está diseñado para convertir pacientes.{" "}
-              <strong className="text-foreground">Conversion Chat sí.</strong>
+              <strong className="inline-block text-foreground">Conversion Chat sí.</strong>
             </p>
             <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
               <Button
@@ -145,7 +145,7 @@ export default function HomePage() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-border text-foreground hover:bg-foreground/5"
+                className="border-border text-foreground hover:border-primary/50 hover:bg-primary/10 hover:text-primary dark:border-white/20 dark:bg-white/8 dark:text-white/90 dark:hover:bg-foreground dark:hover:text-background dark:hover:border-foreground"
               >
                 <Link href="#por-que">
                   ¿Por qué pierdo pacientes?
@@ -153,23 +153,10 @@ export default function HomePage() {
               </Button>
             </div>
 
-            {/* Stats rápidas */}
-            <div className="mt-12 grid grid-cols-3 gap-4 border-t border-border pt-8">
-              {[
-                { stat: "60%", label: "Menos consultas repetitivas" },
-                { stat: "24/7", label: "Sin horarios ni suplentes" },
-                { stat: "3 días", label: "Tiempo de implementación" },
-              ].map((item) => (
-                <div key={item.label} className="text-center lg:text-left">
-                  <p className="text-2xl font-black text-primary">{item.stat}</p>
-                  <p className="text-xs text-foreground/50">{item.label}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Personaje */}
-          <div className="relative flex justify-center lg:justify-end">
+          <div className="relative flex items-end justify-center self-end lg:justify-end">
             <div className="pointer-events-none absolute inset-0 rounded-full bg-primary/5 blur-2xl" />
             <Image
               src="/images/logos/personaje.png"
@@ -183,12 +170,38 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── STATS BAR ─────────────────────────────────────────────────────── */}
+      <section className="border-y border-border bg-card py-12 sm:py-16">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+            {[
+              { stat: "60%", label: "Menos consultas repetitivas para tu equipo" },
+              { stat: "24/7", label: "Disponible sin horarios ni suplentes" },
+              { stat: "3 días", label: "Tiempo promedio de implementación" },
+            ].map((item, i) => (
+              <div
+                key={item.label}
+                className={`flex flex-col items-center gap-2 text-center ${
+                  i < 2 ? "sm:border-r sm:border-border" : ""
+                }`}
+              >
+                <p className="font-display text-5xl font-black text-primary sm:text-6xl">
+                  {item.stat}
+                </p>
+                <p className="max-w-[180px] text-sm text-muted-foreground">
+                  {item.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── GOLPE DE REALIDAD ─────────────────────────────────────────────── */}
       <section id="por-que" className="bg-muted py-20 sm:py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="mb-6 font-display text-3xl font-black tracking-tight sm:text-4xl">
-            La mayoría de clínicas no pierden pacientes por precios.
-            <br />
+            La mayoría de clínicas no pierden pacientes por precios. 
             <span className="text-primary">Los pierden por cómo responden.</span>
           </h2>
           <div className="mb-10 grid gap-3 sm:grid-cols-2">
@@ -365,7 +378,7 @@ export default function HomePage() {
       </section>
 
       {/* ── AGENTE EN ACCIÓN (imagen) ──────────────────────────────────────── */}
-      <section className="bg-background py-16 sm:py-20">
+      <section className="bg-background py-8 sm:py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div>
@@ -433,7 +446,7 @@ export default function HomePage() {
       </section>
 
       {/* ── FORMULARIO ────────────────────────────────────────────────────── */}
-      <section id="registro" className="bg-background py-20 sm:py-28">
+      <section id="registro" className="bg-muted py-20 sm:py-28">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
           <h2 className="mb-4 text-center font-display text-3xl font-black tracking-tight sm:text-4xl">
             Quiero que mi clínica
