@@ -141,9 +141,13 @@ export default function HomePage() {
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/80 glow-cyan font-semibold"
               >
-                <Link href="#demo">
+                <a
+                  href={`https://wa.me/${phone}?text=${encodeURIComponent(message)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Ver demo en vivo <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+                </a> 
               </Button>
               <Button
                 asChild
@@ -446,9 +450,13 @@ export default function HomePage() {
             size="lg"
             className="bg-brand-gradient text-white hover:opacity-90 glow-magenta font-bold"
           >
-            <Link href="#registro">
+            <a
+              href={`https://wa.me/${phone}?text=${encodeURIComponent(message)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Probar cómo sí se convierte <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+            </a> 
           </Button>
         </div>
       </section>
