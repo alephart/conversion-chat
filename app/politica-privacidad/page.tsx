@@ -13,15 +13,15 @@ export default function PoliticaPrivacidadPage() {
         <h1 className="mb-2 text-4xl font-extrabold tracking-tight">
           Política de privacidad
         </h1>
-        <p className="mb-2 text-sm text-muted-foreground">
+        <p className="mb-2 text-base text-muted-foreground">
           Tratamiento de datos y uso responsable de inteligencia artificial
         </p>
-        <p className="mb-12 text-xs text-muted-foreground">
+        <p className="mb-12 text-sm text-muted-foreground">
           <strong>CONVERSION CHAT</strong> · Desarrollado por SANGO Laboratorio
           Creativo · Última actualización: Febrero de 2026
         </p>
 
-        <div className="space-y-10 text-sm leading-relaxed">
+        <div className="space-y-10 text-base leading-relaxed">
           {/* Intro */}
           <p className="text-muted-foreground">
             En Conversion Chat respetamos la privacidad, confidencialidad y
@@ -208,7 +208,7 @@ export default function PoliticaPrivacidadPage() {
             </a>
           </Section>
 
-          <p className="border-t border-border pt-8 text-xs text-muted-foreground">
+          <p className="border-t border-border pt-8 text-sm text-muted-foreground">
             © Conversion Chat – Desarrollado por SANGO Laboratorio Creativo.
             Inteligencia artificial aplicada a conversaciones médicas reales.
           </p>
@@ -229,7 +229,7 @@ function Section({
 }) {
   return (
     <section>
-      <h2 className="mb-3 text-base font-bold">
+      <h2 className="mb-3 text-lg font-bold">
         {number}. {title}
       </h2>
       {children}

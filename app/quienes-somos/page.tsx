@@ -28,7 +28,7 @@ export default function QuienesSomosPage() {
         {/* Origen */}
         <section className="mb-16 rounded-2xl bg-muted/40 p-8 sm:p-12">
           <h2 className="mb-4 text-2xl font-bold">Desarrollado por SANGO</h2>
-          <p className="mb-4 text-muted-foreground">
+          <p className="mb-4 text-base text-muted-foreground">
             Conversion Chat es una solución de inteligencia artificial aplicada
             a la conversión médica, desarrollada por{" "}
             <strong className="text-foreground">SANGO</strong>, agencia
@@ -36,14 +36,14 @@ export default function QuienesSomosPage() {
             posicionamiento para clínicas de medicina estética, dermatología y
             cirugía plástica.
           </p>
-          <p className="mb-4 text-muted-foreground">
+          <p className="mb-4 text-base text-muted-foreground">
             Durante años, en SANGO hemos acompañado médicos y equipos
             comerciales en la estructuración de sus procesos de atención, ventas
             y comunicación con pacientes. Conversion Chat surge como la
             evolución natural de ese conocimiento, integrando tecnología,
             estrategia y criterio médico en un solo sistema conversacional.
           </p>
-          <p className="text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             Nace de la experiencia directa en consultorios y clínicas reales,
             entendiendo de primera mano uno de los principales puntos críticos
             del sector:{" "}
@@ -58,7 +58,7 @@ export default function QuienesSomosPage() {
         {/* Propósito */}
         <section className="mb-16">
           <h2 className="mb-6 text-2xl font-bold">Nuestro propósito</h2>
-          <p className="mb-6 text-muted-foreground">
+          <p className="mb-6 text-base text-muted-foreground">
             Conversion Chat es el punto donde la experiencia clínica, la
             estrategia comercial y la tecnología se alinean para{" "}
             <strong className="text-foreground">
@@ -88,7 +88,7 @@ export default function QuienesSomosPage() {
                 <h3 className="mb-2 font-semibold text-primary">
                   {item.title}
                 </h3>
-                <p className="text-sm text-muted-foreground">{item.body}</p>
+                <p className="text-base text-muted-foreground">{item.body}</p>
               </div>
             ))}
           </div>
@@ -99,7 +99,7 @@ export default function QuienesSomosPage() {
           <h2 className="mb-4 text-xl font-bold">
             Uso responsable de IA en entornos médicos
           </h2>
-          <p className="mb-4 text-muted-foreground">
+          <p className="mb-4 text-base text-muted-foreground">
             Conversion Chat utiliza inteligencia artificial como herramienta de
             apoyo a la comunicación,{" "}
             <strong className="text-foreground">
@@ -107,7 +107,7 @@ export default function QuienesSomosPage() {
             </strong>
             .
           </p>
-          <ul className="space-y-2 text-sm text-muted-foreground">
+          <ul className="space-y-2 text-base text-muted-foreground">
             {[
               "No realiza diagnósticos",
               "No prescribe tratamientos",
@@ -118,7 +118,7 @@ export default function QuienesSomosPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-4 text-sm text-muted-foreground">
+          <p className="mt-4 text-base text-muted-foreground">
             Toda la información entregada por el agente tiene fines educativos,
             orientativos y comerciales. La responsabilidad de las decisiones
             clínicas recae exclusivamente en el profesional de la salud.
@@ -127,7 +127,7 @@ export default function QuienesSomosPage() {
 
         {/* CTA */}
         <div className="text-center">
-          <p className="mb-6 text-muted-foreground">
+          <p className="mb-6 text-lg text-muted-foreground">
             ¿Quieres ver Conversion Chat funcionando en tu especialidad?
           </p>
           <Button asChild size="lg">

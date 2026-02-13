@@ -27,7 +27,7 @@ export default function ContactoPage() {
           {/* Info */}
           <div className="space-y-8">
             <div>
-              <h2 className="mb-6 text-xl font-bold">¿Qué pasa después?</h2>
+              <h2 className="mb-6 text-2xl font-bold">¿Qué pasa después?</h2>
               <ol className="space-y-4">
                 {[
                   "Revisamos tu formulario y entendemos tu especialidad y contexto.",
@@ -36,10 +36,10 @@ export default function ContactoPage() {
                   "Defines si quieres avanzar. Sin presión, sin letra pequeña.",
                 ].map((step, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+                    <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
                       {i + 1}
                     </span>
-                    <span className="text-sm text-muted-foreground">{step}</span>
+                    <span className="text-base text-muted-foreground">{step}</span>
                   </li>
                 ))}
               </ol>
@@ -51,10 +51,10 @@ export default function ContactoPage() {
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="mb-1 font-semibold">Email directo</h3>
+                  <h3 className="mb-1 text-lg font-semibold">Email directo</h3>
                   <a
                     href="mailto:hello@conversionchat.co"
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-base text-muted-foreground transition-colors hover:text-foreground"
                   >
                     hello@conversionchat.co
                   </a>
@@ -66,11 +66,11 @@ export default function ContactoPage() {
                   <Clock className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="mb-1 font-semibold">Tiempo de respuesta</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="mb-1 text-lg font-semibold">Tiempo de respuesta</h3>
+                  <p className="text-base text-muted-foreground">
                     Menos de 24 horas en días hábiles.
                   </p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-sm text-muted-foreground">
                     El agente está disponible 24/7
                   </p>
                 </div>
@@ -78,11 +78,11 @@ export default function ContactoPage() {
             </div>
 
             <div className="rounded-xl border border-border bg-muted/40 p-5">
-              <p className="text-sm italic text-muted-foreground">
+              <p className="text-base italic text-muted-foreground">
                 &ldquo;La conversión no se pierde en la consulta.
                 Se pierde mucho antes.&rdquo;
               </p>
-              <p className="mt-2 text-xs text-muted-foreground">
+              <p className="mt-2 text-sm text-muted-foreground">
                 — Equipo Conversion Chat
               </p>
             </div>
