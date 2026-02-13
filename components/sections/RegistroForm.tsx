@@ -67,9 +67,25 @@ export default function RegistroForm() {
     if (!validate()) return;
     setLoading(true);
     // TODO: conectar con endpoint real (e.g. API route o servicio externo)
-    await new Promise((r) => setTimeout(r, 1000));
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        throw new Error("Error al enviar");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      alert("Hubo un error enviando el formulario. Intenta de nuevo.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (submitted) {
