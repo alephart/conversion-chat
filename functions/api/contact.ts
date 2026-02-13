@@ -73,7 +73,7 @@ export const onRequestPost = async (context: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Conversion Chat <onboarding@resend.dev>",
+        from: "Conversion Chat <no-reply@hablemos.conversionchat.co>",
         to: [recipientEmail],
         subject: `Nuevo contacto: ${empresa}`,
         html: emailHtml,
