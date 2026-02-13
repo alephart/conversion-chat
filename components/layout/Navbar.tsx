@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 const navLinks = [
   { href: "/", label: "Inicio" },
@@ -16,16 +17,26 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-[#060c1f]/90 backdrop-blur supports-[backdrop-filter]:bg-[#060c1f]/80">
+    <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center">
+          {/* Light mode: logo negro */}
+          <Image
+            src="/images/logos/logo-negativo.png"
+            alt="Conversion Chat"
+            width={180}
+            height={60}
+            className="h-10 w-auto object-contain block dark:hidden"
+            priority
+          />
+          {/* Dark mode: logo blanco */}
           <Image
             src="/images/logos/logo-positivo.png"
             alt="Conversion Chat"
             width={180}
             height={60}
-            className="h-10 w-auto object-contain"
+            className="h-10 w-auto object-contain hidden dark:block"
             priority
           />
         </Link>
@@ -36,11 +47,12 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-white/70 transition-colors hover:text-white"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
             </Link>
           ))}
+          <ThemeToggle />
           <Button
             asChild
             size="sm"
@@ -50,26 +62,29 @@ export default function Navbar() {
           </Button>
         </nav>
 
-        {/* Mobile toggle */}
-        <button
-          className="text-white/80 md:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        {/* Mobile: theme toggle + hamburger */}
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            className="text-foreground/80"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-white/10 bg-[#060c1f] md:hidden">
+        <div className="border-t border-border bg-background md:hidden">
           <nav className="flex flex-col gap-1 px-4 py-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2 text-sm font-medium text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+                className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               >
                 {link.label}
               </Link>

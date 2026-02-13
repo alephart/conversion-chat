@@ -46,18 +46,64 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
-  /* Brand tokens */
-  --color-brand-cyan: var(--brand-cyan);
-  --color-brand-magenta: var(--brand-magenta);
-  --color-brand-navy: var(--brand-navy);
-  --color-brand-navy-card: var(--brand-navy-card);
 }
 
-/* ─── DARK (default — sitio siempre en modo oscuro) ─────────────────────────── */
-:root,
-.dark {
+/* ─── LIGHT (default) ──────────────────────────────────────────────────────── */
+:root {
   --radius: 0.625rem;
 
+  /* Fondos */
+  --background:           oklch(0.99 0.005 255);   /* blanco azulado muy sutil */
+  --card:                 oklch(0.97 0.008 255);   /* gris azulado claro       */
+  --popover:              oklch(0.99 0.005 255);
+  --muted:                oklch(0.94 0.010 255);   /* sección alternada light  */
+
+  /* Textos */
+  --foreground:           oklch(0.15 0.030 255);   /* navy oscuro              */
+  --card-foreground:      oklch(0.15 0.030 255);
+  --popover-foreground:   oklch(0.15 0.030 255);
+  --muted-foreground:     oklch(0.45 0.04  240);   /* gris azulado medio       */
+
+  /* Primario — cyan (mismo en ambos temas) */
+  --primary:              oklch(0.55 0.16  210);   /* cyan más saturado/oscuro para light */
+  --primary-foreground:   oklch(0.99 0     0);     /* blanco sobre cyan        */
+
+  /* Secundario */
+  --secondary:            oklch(0.94 0.010 255);
+  --secondary-foreground: oklch(0.15 0.030 255);
+
+  /* Acento — magenta (mismo en ambos temas) */
+  --accent:               oklch(0.55 0.26  340);
+  --accent-foreground:    oklch(0.99 0     0);
+
+  /* Bordes e inputs */
+  --border:               oklch(0.85 0.015 255);
+  --input:                oklch(0.93 0.010 255);
+  --ring:                 oklch(0.55 0.16  210);
+
+  /* Destructive */
+  --destructive:          oklch(0.60 0.22  25);
+
+  /* Charts */
+  --chart-1: oklch(0.55 0.16 210);
+  --chart-2: oklch(0.55 0.26 340);
+  --chart-3: oklch(0.70 0.18 60);
+  --chart-4: oklch(0.60 0.20 280);
+  --chart-5: oklch(0.65 0.18 160);
+
+  /* Sidebar */
+  --sidebar:                oklch(0.97 0.008 255);
+  --sidebar-foreground:     oklch(0.15 0.030 255);
+  --sidebar-primary:        oklch(0.55 0.16  210);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent:         oklch(0.94 0.010 255);
+  --sidebar-accent-foreground: oklch(0.15 0.030 255);
+  --sidebar-border:         oklch(0.85 0.015 255);
+  --sidebar-ring:           oklch(0.55 0.16  210);
+}
+
+/* ─── DARK ──────────────────────────────────────────────────────────────────── */
+.dark {
   /* Fondos navy */
   --background:           oklch(0.10 0.035 255);   /* #060c1f  navy base    */
   --card:                 oklch(0.14 0.04  255);   /* #0d1b3e  navy card    */
@@ -68,22 +114,22 @@
   --foreground:           oklch(0.95 0.01  255);   /* #f0f6ff  blanco suave */
   --card-foreground:      oklch(0.95 0.01  255);
   --popover-foreground:   oklch(0.95 0.01  255);
-  --muted-foreground:     oklch(0.60 0.06  240);   /* #7a9cc0  azul grisáceo */
+  --muted-foreground:     oklch(0.60 0.06  240);   /* #7a9cc0               */
 
-  /* Primario — cyan eléctrico */
-  --primary:              oklch(0.72 0.16  210);   /* #00c8e8  cyan tech    */
-  --primary-foreground:   oklch(0.10 0.035 255);   /* texto sobre cyan      */
+  /* Primario */
+  --primary:              oklch(0.72 0.16  210);   /* cyan más brillante    */
+  --primary-foreground:   oklch(0.10 0.035 255);
 
   /* Secundario */
   --secondary:            oklch(0.17 0.04  255);
   --secondary-foreground: oklch(0.95 0.01  255);
 
-  /* Acento — magenta logo */
-  --accent:               oklch(0.55 0.26  340);   /* #e91e8c  magenta      */
+  /* Acento */
+  --accent:               oklch(0.55 0.26  340);
   --accent-foreground:    oklch(0.98 0     0);
 
   /* Bordes e inputs */
-  --border:               oklch(0.25 0.05  255);   /* azul oscuro sutil     */
+  --border:               oklch(0.25 0.05  255);
   --input:                oklch(0.18 0.04  255);
   --ring:                 oklch(0.72 0.16  210);
 
@@ -106,14 +152,9 @@
   --sidebar-accent-foreground: oklch(0.95 0.01 255);
   --sidebar-border:         oklch(0.25 0.05 255);
   --sidebar-ring:           oklch(0.72 0.16 210);
-
-  /* Tokens de marca propios */
-  --brand-cyan:             #00c8e8;
-  --brand-magenta:          #e91e8c;
-  --brand-navy:             #060c1f;
-  --brand-navy-card:        #0d1b3e;
 }
 
+/* ─── Base ──────────────────────────────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -121,13 +162,14 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-outfit), sans-serif;
+    transition: background-color 0.3s ease, color 0.2s ease;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-nunito), var(--font-outfit), sans-serif;
   }
 }
 
-/* ─── Utilidades de gradiente de marca ──────────────────────────────────────── */
+/* ─── Utilidades de marca (invariantes al tema) ──────────────────────────────── */
 @layer utilities {
   .text-brand-gradient {
     background: linear-gradient(90deg, #e91e8c 0%, #ff6d00 50%, #ffcc00 100%);
@@ -138,16 +180,10 @@
   .bg-brand-gradient {
     background: linear-gradient(135deg, #e91e8c 0%, #ff6d00 50%, #ffcc00 100%);
   }
-  .border-brand-gradient {
-    border-image: linear-gradient(135deg, #e91e8c, #ff6d00, #ffcc00) 1;
-  }
-  .bg-navy-card {
-    background-color: var(--brand-navy-card);
-  }
   .glow-cyan {
-    box-shadow: 0 0 24px 0 oklch(0.72 0.16 210 / 0.35);
+    box-shadow: 0 0 20px 0 oklch(0.65 0.16 210 / 0.30);
   }
   .glow-magenta {
-    box-shadow: 0 0 24px 0 oklch(0.55 0.26 340 / 0.35);
+    box-shadow: 0 0 20px 0 oklch(0.55 0.26 340 / 0.30);
   }
 }
