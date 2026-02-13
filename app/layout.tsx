@@ -10,9 +10,9 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "AgentIA – Tu agente de inteligencia artificial",
+  title: "Conversion Chat – IA para clínicas médicas",
   description:
-    "Automatiza procesos, atiende clientes y escala tu negocio con un agente de IA diseñado para tu empresa.",
+    "Agente conversacional con inteligencia artificial especializado en convertir consultas de WhatsApp en citas reales para clínicas de medicina estética, dermatología y cirugía plástica.",
 };
 
 export default function RootLayout({

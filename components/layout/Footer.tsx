@@ -13,9 +13,14 @@ export default function Footer() {
     <footer className="border-t border-border/40 bg-background">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
-          <Link href="/" className="text-lg font-bold tracking-tight">
-            AgentIA
-          </Link>
+          <div>
+            <Link href="/" className="text-lg font-bold tracking-tight">
+              Conversion<span className="text-primary">Chat</span>
+            </Link>
+            <p className="mt-1 text-xs text-muted-foreground">
+              IA aplicada a conversaciones médicas reales.
+            </p>
+          </div>
 
           <nav className="flex flex-wrap justify-center gap-6">
             {footerLinks.map((link) => (
@@ -30,7 +35,7 @@ export default function Footer() {
           </nav>
 
           <p className="text-sm text-muted-foreground">
-            &copy; {year} AgentIA. Todos los derechos reservados.
+            &copy; {year} SANGO Laboratorio Creativo
           </p>
         </div>
       </div>

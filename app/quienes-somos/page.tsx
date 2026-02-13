@@ -3,28 +3,10 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Quiénes somos – AgentIA",
+  title: "Quiénes somos – Conversion Chat",
   description:
-    "Conoce al equipo detrás de AgentIA y nuestra misión de democratizar la inteligencia artificial para empresas de todos los tamaños.",
+    "Conversion Chat es desarrollado por SANGO, agencia especializada en marketing médico y estrategia comercial para clínicas de medicina estética, dermatología y cirugía plástica.",
 };
-
-const team = [
-  {
-    name: "Ana Torres",
-    role: "CEO & Co-fundadora",
-    bio: "Ingeniera de sistemas con 12 años construyendo productos SaaS en mercados hispanohablantes.",
-  },
-  {
-    name: "Carlos Vega",
-    role: "CTO & Co-fundador",
-    bio: "Especialista en LLMs y arquitecturas distribuidas. Ex-investigador en NLP en la Universidad Politécnica.",
-  },
-  {
-    name: "Laura Méndez",
-    role: "Head of Product",
-    bio: "Diseñadora de experiencias con foco en reducir la fricción entre humanos y sistemas inteligentes.",
-  },
-];
 
 export default function QuienesSomosPage() {
   return (
@@ -36,55 +18,120 @@ export default function QuienesSomosPage() {
             Quiénes somos
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Somos un equipo de ingenieros, diseñadores y expertos en IA con una
-            misión clara: que cualquier empresa pueda beneficiarse del poder de
-            los agentes inteligentes.
+            Conversion Chat nace de la experiencia directa en consultorios y
+            clínicas reales. No desarrollamos tecnología genérica — diseñamos
+            sistemas conversacionales con enfoque comercial, lenguaje médico y
+            uso responsable de inteligencia artificial.
           </p>
         </div>
 
-        {/* Misión */}
-        <section className="mb-20 rounded-2xl bg-muted/40 p-8 sm:p-12">
-          <h2 className="mb-4 text-2xl font-bold">Nuestra misión</h2>
+        {/* Origen */}
+        <section className="mb-16 rounded-2xl bg-muted/40 p-8 sm:p-12">
+          <h2 className="mb-4 text-2xl font-bold">Desarrollado por SANGO</h2>
           <p className="mb-4 text-muted-foreground">
-            Creemos que la inteligencia artificial no debería ser exclusiva de
-            las grandes corporaciones. AgentIA nació en 2023 con el objetivo de
-            poner en manos de pymes y startups la misma tecnología que usan las
-            empresas del Fortune 500.
+            Conversion Chat es una solución de inteligencia artificial aplicada
+            a la conversión médica, desarrollada por{" "}
+            <strong className="text-foreground">SANGO</strong>, agencia
+            especializada en marketing médico, estrategia comercial y
+            posicionamiento para clínicas de medicina estética, dermatología y
+            cirugía plástica.
+          </p>
+          <p className="mb-4 text-muted-foreground">
+            Durante años, en SANGO hemos acompañado médicos y equipos
+            comerciales en la estructuración de sus procesos de atención, ventas
+            y comunicación con pacientes. Conversion Chat surge como la
+            evolución natural de ese conocimiento, integrando tecnología,
+            estrategia y criterio médico en un solo sistema conversacional.
           </p>
           <p className="text-muted-foreground">
-            No vendemos humo: cada funcionalidad que lanzamos ha sido validada
-            por clientes reales que miden resultados reales. Si no funciona, no
-            lo publicamos.
+            Nace de la experiencia directa en consultorios y clínicas reales,
+            entendiendo de primera mano uno de los principales puntos críticos
+            del sector:{" "}
+            <strong className="text-foreground">
+              la conversación previa a la cita y su impacto directo en la
+              conversión
+            </strong>
+            .
           </p>
         </section>
 
-        {/* Equipo */}
-        <section className="mb-20">
-          <h2 className="mb-10 text-2xl font-bold">El equipo</h2>
-          <div className="grid gap-8 sm:grid-cols-3">
-            {team.map((member) => (
+        {/* Propósito */}
+        <section className="mb-16">
+          <h2 className="mb-6 text-2xl font-bold">Nuestro propósito</h2>
+          <p className="mb-6 text-muted-foreground">
+            Conversion Chat es el punto donde la experiencia clínica, la
+            estrategia comercial y la tecnología se alinean para{" "}
+            <strong className="text-foreground">
+              convertir conversaciones en citas reales
+            </strong>
+            .
+          </p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              {
+                title: "Experiencia clínica",
+                body: "Conocemos el lenguaje médico, las objeciones reales del paciente y los protocolos que cada especialidad requiere.",
+              },
+              {
+                title: "Estrategia comercial",
+                body: "Cada conversación está diseñada para educar, calificar y guiar al paciente hacia la valoración médica.",
+              },
+              {
+                title: "Tecnología responsable",
+                body: "IA ética, transparente y alineada con la responsabilidad que exige el sector médico. Nunca reemplaza al médico.",
+              },
+            ].map((item) => (
               <div
-                key={member.name}
+                key={item.title}
                 className="rounded-xl border border-border p-6"
               >
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-xl font-bold text-primary">
-                  {member.name[0]}
-                </div>
-                <h3 className="font-semibold">{member.name}</h3>
-                <p className="mb-2 text-sm text-primary/80">{member.role}</p>
-                <p className="text-sm text-muted-foreground">{member.bio}</p>
+                <h3 className="mb-2 font-semibold text-primary">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-muted-foreground">{item.body}</p>
               </div>
             ))}
           </div>
         </section>
 
+        {/* Aviso IA responsable */}
+        <section className="mb-16 rounded-2xl border border-border bg-card p-8">
+          <h2 className="mb-4 text-xl font-bold">
+            Uso responsable de IA en entornos médicos
+          </h2>
+          <p className="mb-4 text-muted-foreground">
+            Conversion Chat utiliza inteligencia artificial como herramienta de
+            apoyo a la comunicación,{" "}
+            <strong className="text-foreground">
+              no como sustituto del criterio médico
+            </strong>
+            .
+          </p>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            {[
+              "No realiza diagnósticos",
+              "No prescribe tratamientos",
+              "No reemplaza la consulta médica presencial o virtual",
+            ].map((item) => (
+              <li key={item} className="flex items-center gap-2">
+                <span className="text-primary">—</span> {item}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Toda la información entregada por el agente tiene fines educativos,
+            orientativos y comerciales. La responsabilidad de las decisiones
+            clínicas recae exclusivamente en el profesional de la salud.
+          </p>
+        </section>
+
         {/* CTA */}
         <div className="text-center">
           <p className="mb-6 text-muted-foreground">
-            ¿Quieres saber más o hablar con el equipo?
+            ¿Quieres ver Conversion Chat funcionando en tu especialidad?
           </p>
           <Button asChild size="lg">
-            <Link href="/#registro">Solicita una demo</Link>
+            <Link href="/#registro">Solicitar una demo</Link>
           </Button>
         </div>
       </div>

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import RegistroForm from "@/components/sections/RegistroForm";
-import { Mail, MapPin, Clock } from "lucide-react";
+import { Mail, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contacto – AgentIA",
+  title: "Contacto – Conversion Chat",
   description:
-    "Ponte en contacto con el equipo de AgentIA. Estamos aquí para resolver tus dudas y ayudarte a encontrar la solución perfecta.",
+    "Ponte en contacto con el equipo de Conversion Chat. Te respondemos en menos de 24 horas para mostrarte cómo tu clínica puede convertir más pacientes.",
 };
 
 export default function ContactoPage() {
@@ -15,56 +15,76 @@ export default function ContactoPage() {
         {/* Header */}
         <div className="mb-16 text-center">
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Contacto
+            Hablemos
           </h1>
           <p className="mx-auto max-w-xl text-lg text-muted-foreground">
-            ¿Tienes preguntas? Escríbenos o rellena el formulario y te
-            respondemos en menos de 24 horas.
+            Cuéntanos sobre tu clínica y te mostramos cómo Conversion Chat
+            puede funcionar con tu especialidad. Respuesta en menos de 24 horas.
           </p>
         </div>
 
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Info */}
           <div className="space-y-8">
-            <div className="flex gap-4">
-              <div className="mt-1 flex-shrink-0 rounded-lg bg-primary/10 p-2 text-primary">
-                <Mail className="h-5 w-5" />
+            <div>
+              <h2 className="mb-6 text-xl font-bold">¿Qué pasa después?</h2>
+              <ol className="space-y-4">
+                {[
+                  "Revisamos tu formulario y entendemos tu especialidad y contexto.",
+                  "Te contactamos para agendar una sesión de 30 min.",
+                  "Te mostramos Conversion Chat con casos reales de clínicas como la tuya.",
+                  "Defines si quieres avanzar. Sin presión, sin letra pequeña.",
+                ].map((step, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+                      {i + 1}
+                    </span>
+                    <span className="text-sm text-muted-foreground">{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex gap-4">
+                <div className="mt-1 flex-shrink-0 rounded-lg bg-primary/10 p-2 text-primary">
+                  <Mail className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="mb-1 font-semibold">Email directo</h3>
+                  <a
+                    href="mailto:contacto@conversionchat.ai"
+                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    contacto@conversionchat.ai
+                  </a>
+                </div>
               </div>
-              <div>
-                <h3 className="mb-1 font-semibold">Email</h3>
-                <a
-                  href="mailto:hola@agentia.es"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  hola@agentia.es
-                </a>
+
+              <div className="flex gap-4">
+                <div className="mt-1 flex-shrink-0 rounded-lg bg-primary/10 p-2 text-primary">
+                  <Clock className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="mb-1 font-semibold">Tiempo de respuesta</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Menos de 24 horas en días hábiles.
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    El agente está disponible 24/7
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <div className="mt-1 flex-shrink-0 rounded-lg bg-primary/10 p-2 text-primary">
-                <MapPin className="h-5 w-5" />
-              </div>
-              <div>
-                <h3 className="mb-1 font-semibold">Ubicación</h3>
-                <p className="text-muted-foreground">Madrid, España</p>
-                <p className="text-sm text-muted-foreground">
-                  (Atendemos clientes en toda la región hispanohablante)
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              <div className="mt-1 flex-shrink-0 rounded-lg bg-primary/10 p-2 text-primary">
-                <Clock className="h-5 w-5" />
-              </div>
-              <div>
-                <h3 className="mb-1 font-semibold">Horario de atención</h3>
-                <p className="text-muted-foreground">Lunes a viernes, 9:00–18:00 CET</p>
-                <p className="text-sm text-muted-foreground">
-                  El agente está disponible 24/7
-                </p>
-              </div>
+            <div className="rounded-xl border border-border bg-muted/40 p-5">
+              <p className="text-sm italic text-muted-foreground">
+                &ldquo;La conversión no se pierde en la consulta.
+                Se pierde mucho antes.&rdquo;
+              </p>
+              <p className="mt-2 text-xs text-muted-foreground">
+                — Equipo Conversion Chat
+              </p>
             </div>
           </div>
 

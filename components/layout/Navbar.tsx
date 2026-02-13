@@ -17,8 +17,10 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="text-xl font-bold tracking-tight">
-          AgentIA
+        <Link href="/" className="flex items-center gap-2">
+          <span className="text-xl font-bold tracking-tight">
+            Conversion<span className="text-primary">Chat</span>
+          </span>
         </Link>
 
         {/* Desktop nav */}
@@ -33,7 +35,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Button asChild size="sm">
-            <Link href="/#registro">Solicitar demo</Link>
+            <Link href="/#demo">Ver demo en vivo</Link>
           </Button>
         </nav>
 
@@ -62,8 +64,8 @@ export default function Navbar() {
               </Link>
             ))}
             <Button asChild size="sm" className="mt-2">
-              <Link href="/#registro" onClick={() => setOpen(false)}>
-                Solicitar demo
+              <Link href="/#demo" onClick={() => setOpen(false)}>
+                Ver demo en vivo
               </Link>
             </Button>
           </nav>
