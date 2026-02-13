@@ -1,20 +1,29 @@
- interface Env {
+// /functions/api/contact.ts
+
+interface Env {
   RESEND_API_KEY: string;
   CONTACT_EMAIL: string;
 }
 
-    interface ContactFormPayload {
-      nombre: string;
-      especialidad?: string;
-      email: string;
-      telefono?: string;
-      empresa: string;
-      interes: string;
-      mensaje?: string;
-    }
+interface ContactFormPayload {
+  nombre: string;
+  especialidad?: string;
+  email: string;
+  telefono?: string;
+  empresa: string;
+  interes: string;
+  mensaje?: string;
+}
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+// ============================================
+// MANEJAR POST
+// ============================================
+export const onRequestPost = async (context: {
+  request: Request;
+  env: Env;
+}) => {
   try {
+    const { request, env } = context;
     const data = (await request.json()) as ContactFormPayload;
 
     const {
@@ -31,7 +40,13 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     if (!nombre || !email || !empresa || !interes) {
       return new Response(
         JSON.stringify({ error: "Campos obligatorios faltantes" }),
-        { status: 400 }
+        {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*", // ← CORS
+          },
+        }
       );
     }
 
@@ -65,17 +80,49 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
     if (!resendRes.ok) {
       const err = await resendRes.text();
-      return new Response(err, { status: 500 });
+      console.error("Resend error:", err);
+      return new Response(
+        JSON.stringify({ error: "Error al enviar email" }),
+        {
+          status: 500,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
     }
 
-    return new Response(
-      JSON.stringify({ ok: true }),
-      { status: 200 }
-    );
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*", // ← CORS
+      },
+    });
   } catch (err) {
-    return new Response(
-      JSON.stringify({ error: "Error interno" }),
-      { status: 500 }
-    );
+    console.error("Error interno:", err);
+    return new Response(JSON.stringify({ error: "Error interno" }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
   }
+};
+
+// ============================================
+// MANEJAR OPTIONS (CORS Preflight)
+// ============================================
+export const onRequestOptions = async () => {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Max-Age": "86400", // 24 horas
+    },
+  });
 };
