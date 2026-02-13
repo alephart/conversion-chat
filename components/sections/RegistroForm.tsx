@@ -15,7 +15,9 @@ import {
 
 interface FormData {
   nombre: string;
+  especialidad: string;
   email: string;
+  telefono: string;
   empresa: string;
   interes: string;
   mensaje: string;
@@ -35,7 +37,9 @@ function validateEmail(email: string) {
 export default function RegistroForm() {
   const [form, setForm] = useState<FormData>({
     nombre: "",
+    especialidad: "",
     email: "",
+    telefono: "",
     empresa: "",
     interes: "",
     mensaje: "",
@@ -100,6 +104,17 @@ export default function RegistroForm() {
           )}
         </div>
 
+        {/* Especialidad */}
+        <div className="grid gap-1.5">
+          <Label htmlFor="especialidad">Especialidad o profesión</Label>
+          <Input
+            id="especialidad"
+            placeholder="Ej: Dermatología, Medicina estética…"
+            value={form.especialidad}
+            onChange={(e) => setForm({ ...form, especialidad: e.target.value })}
+          />
+        </div>
+
         {/* Email */}
         <div className="grid gap-1.5">
           <Label htmlFor="email">Email profesional *</Label>
@@ -113,6 +128,18 @@ export default function RegistroForm() {
           {errors.email && (
             <p className="text-sm text-destructive">{errors.email}</p>
           )}
+        </div>
+
+        {/* Teléfono */}
+        <div className="grid gap-1.5">
+          <Label htmlFor="telefono">Teléfono</Label>
+          <Input
+            id="telefono"
+            type="tel"
+            placeholder="+57 300 000 0000"
+            value={form.telefono}
+            onChange={(e) => setForm({ ...form, telefono: e.target.value })}
+          />
         </div>
 
         {/* Empresa */}

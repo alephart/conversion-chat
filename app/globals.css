@@ -167,6 +167,14 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-nunito), var(--font-outfit), sans-serif;
   }
+  input::placeholder,
+  textarea::placeholder {
+    color: oklch(0.50 0.04 240);
+  }
+  .dark input::placeholder,
+  .dark textarea::placeholder {
+    color: oklch(0.55 0.06 240);
+  }
 }
 
 /* ─── Utilidades de marca (invariantes al tema) ──────────────────────────────── */
