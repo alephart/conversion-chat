@@ -181,7 +181,7 @@ export default function HomePage() {
             {[
               { stat: "60%", label: "Menos consultas repetitivas para tu equipo" },
               { stat: "24/7", label: "Disponible sin horarios ni suplentes" },
-              { stat: "1 semana", label: "Tiempo promedio de implementación" },
+              { stat: "7 días", label: "Tiempo promedio de implementación" },
             ].map((item, i) => (
               <div
                 key={item.label}
