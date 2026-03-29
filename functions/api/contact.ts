@@ -1,5 +1,7 @@
 // /functions/api/contact.ts
 
+import { buildClientConfirmationEmail } from "./_templates/client-confirmation";
+
 interface Env {
   RESEND_API_KEY: string;
   CONTACT_EMAIL: string;
@@ -82,16 +84,9 @@ export const onRequestPost = async (context: {
 
     if (!resendRes.ok) {
       const err = await resendRes.text();
-      console.error("❌ Resend error:", err);
-      console.error("❌ Status:", resendRes.status);
-      console.error("❌ Headers:", Object.fromEntries(resendRes.headers));
-      
+      console.error("❌ Resend error (team notification):", err);
       return new Response(
-        JSON.stringify({ 
-          error: "Error al enviar email",
-          details: err,  // ← Agrega esto temporalmente para debugging
-          status: resendRes.status
-        }),
+        JSON.stringify({ error: "Error al enviar email", details: err }),
         {
           status: 500,
           headers: {
@@ -102,11 +97,39 @@ export const onRequestPost = async (context: {
       );
     }
 
+    // Send confirmation email to the client
+    const confirmation = buildClientConfirmationEmail({
+      nombre,
+      empresa,
+      especialidad,
+      interes,
+    });
+
+    const confirmationRes = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "Conversion Chat <no-reply@hablemos.conversionchat.co>",
+        to: [email],
+        subject: confirmation.subject,
+        html: confirmation.html,
+        text: confirmation.text,
+      }),
+    });
+
+    if (!confirmationRes.ok) {
+      // Log but don't fail — team already got the notification
+      console.error("⚠️ Confirmation email failed:", await confirmationRes.text());
+    }
+
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*", // ← CORS
+        "Access-Control-Allow-Origin": "*",
       },
     });
   } catch (err) {
