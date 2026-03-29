@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export const metadata: Metadata = {
   title: "Quiénes somos – Conversion Chat",
   description:
-    "Conversion Chat es desarrollado por SANGO, agencia especializada en marketing médico y estrategia comercial para clínicas de medicina estética, dermatología y cirugía plástica.",
+    "Conversion Chat es una creación de SANGO y AGENTTIC, combinando experiencia en marketing médico, estrategia comercial para clínicas de medicina estética, dermatología y cirugía plástica y tecnología de inteligencia artificial.",
 };
 
 export default function QuienesSomosPage() {
@@ -27,21 +27,25 @@ export default function QuienesSomosPage() {
 
         {/* Origen */}
         <section className="mb-16 rounded-2xl bg-muted/40 p-8 sm:p-12">
-          <h2 className="mb-4 text-2xl font-bold">Desarrollado por SANGO</h2>
+          <h2 className="mb-4 text-2xl font-bold">
+            Una creación de SANGO y AGENTTIC
+          </h2>
           <p className="mb-4 text-base text-muted-foreground">
             Conversion Chat es una solución de inteligencia artificial aplicada
-            a la conversión médica, desarrollada por{" "}
+            a la conversión médica, creada en colaboración entre{" "}
             <strong className="text-foreground">SANGO</strong>, agencia
             especializada en marketing médico, estrategia comercial y
             posicionamiento para clínicas de medicina estética, dermatología y
-            cirugía plástica.
+            cirugía plástica; y{" "}
+            <strong className="text-foreground">AGENTTIC</strong>, especialistas
+            en el diseño e implementación de agentes de inteligencia artificial.
           </p>
           <p className="mb-4 text-base text-muted-foreground">
-            Durante años, en SANGO hemos acompañado médicos y equipos
+            SANGO aporta años de experiencia acompañando médicos y equipos
             comerciales en la estructuración de sus procesos de atención, ventas
-            y comunicación con pacientes. Conversion Chat surge como la
-            evolución natural de ese conocimiento, integrando tecnología,
-            estrategia y criterio médico en un solo sistema conversacional.
+            y comunicación con pacientes. AGENTTIC aporta la arquitectura
+            tecnológica y el criterio de IA que hace posible llevar esa
+            experiencia a un sistema conversacional escalable y preciso.
           </p>
           <p className="text-base text-muted-foreground">
             Nace de la experiencia directa en consultorios y clínicas reales,

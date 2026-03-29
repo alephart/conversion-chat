@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Política de privacidad – Conversion Chat",
   description:
-    "Política de privacidad, tratamiento de datos y uso responsable de inteligencia artificial de Conversion Chat, desarrollado por SANGO Laboratorio Creativo.",
+    "Política de privacidad, tratamiento de datos y uso responsable de inteligencia artificial de Conversion Chat, una creación de SANGO y AGENTTIC.",
 };
 
 export default function PoliticaPrivacidadPage() {
@@ -17,8 +17,8 @@ export default function PoliticaPrivacidadPage() {
           Tratamiento de datos y uso responsable de inteligencia artificial
         </p>
         <p className="mb-12 text-sm text-muted-foreground">
-          <strong>CONVERSION CHAT</strong> · Desarrollado por SANGO Laboratorio
-          Creativo · Última actualización: Febrero de 2026
+          <strong>CONVERSION CHAT</strong> · Una creación de SANGO y AGENTTIC ·
+          Última actualización: Marzo de 2026
         </p>
 
         <div className="space-y-10 text-base leading-relaxed">
@@ -56,10 +56,10 @@ export default function PoliticaPrivacidadPage() {
               </li>
             </ul>
             <p className="mt-3 text-muted-foreground">
-              SANGO actúa como desarrollador, administrador y responsable del
-              sistema Conversion Chat, sin perjuicio de que cada clínica usuaria
-              sea responsable del tratamiento de los datos de sus propios
-              pacientes.
+              SANGO y AGENTTIC actúan conjuntamente como creadores y
+              administradores del sistema Conversion Chat, sin perjuicio de que
+              cada clínica usuaria sea responsable del tratamiento de los datos
+              de sus propios pacientes.
             </p>
           </Section>
 
@@ -155,8 +155,8 @@ export default function PoliticaPrivacidadPage() {
               <li>Debe contar con sus propias políticas de privacidad.</li>
             </ul>
             <p className="mt-3 text-muted-foreground">
-              SANGO no se hace responsable por el uso indebido del sistema por
-              parte de terceros.
+              SANGO y AGENTTIC no se hacen responsables por el uso indebido del
+              sistema por parte de terceros.
             </p>
           </Section>
 
@@ -173,10 +173,10 @@ export default function PoliticaPrivacidadPage() {
 
           <Section number="9" title="Seguridad de la información">
             <p className="text-muted-foreground">
-              SANGO adopta medidas técnicas, humanas y administrativas razonables
-              para proteger la información contra acceso no autorizado, pérdida o
-              uso indebido. No obstante, el usuario reconoce que ningún sistema es
-              completamente infalible.
+              SANGO y AGENTTIC adoptan medidas técnicas, humanas y
+              administrativas razonables para proteger la información contra
+              acceso no autorizado, pérdida o uso indebido. No obstante, el
+              usuario reconoce que ningún sistema es completamente infalible.
             </p>
           </Section>
 
@@ -190,9 +190,9 @@ export default function PoliticaPrivacidadPage() {
 
           <Section number="11" title="Modificaciones">
             <p className="text-muted-foreground">
-              SANGO se reserva el derecho de modificar esta política en cualquier
-              momento. Los cambios serán informados a través de los canales
-              oficiales.
+              SANGO y AGENTTIC se reservan el derecho de modificar esta política
+              en cualquier momento. Los cambios serán informados a través de los
+              canales oficiales.
             </p>
           </Section>
 
@@ -209,7 +209,7 @@ export default function PoliticaPrivacidadPage() {
           </Section>
 
           <p className="border-t border-border pt-8 text-sm text-muted-foreground">
-            © Conversion Chat – Desarrollado por SANGO Laboratorio Creativo.
+            © Conversion Chat – Una creación de SANGO y AGENTTIC.
             Inteligencia artificial aplicada a conversaciones médicas reales.
           </p>
         </div>
