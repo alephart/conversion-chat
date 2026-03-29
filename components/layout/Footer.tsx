@@ -51,7 +51,7 @@ export default function Footer() {
           </nav>
 
           <p className="text-sm text-muted-foreground">
-            &copy; {year} SANGO Laboratorio Creativo
+            &copy; {year} CONVERSION CHAT. All rights reserved.
           </p>
         </div>
       </div>
