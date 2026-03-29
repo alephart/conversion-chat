@@ -28,6 +28,15 @@ export const metadata: Metadata = {
   title: "Conversion Chat – IA para clínicas médicas",
   description:
     "Agente conversacional con inteligencia artificial especializado en convertir consultas de WhatsApp en citas reales para clínicas de medicina estética, dermatología y cirugía plástica.",
+  icons: {
+      icon: [
+        { url: "/favicon.ico" },
+        { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      ],
+      shortcut: "/favicon.ico",
+      apple: "/apple-icon.png",
+    },
+    manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
