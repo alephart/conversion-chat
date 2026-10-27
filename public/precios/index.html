@@ -1,0 +1,437 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Planes Conversion Chat</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
+<style>
+/* Layout: encabezado tipográfico, bloque "Licencia + Membresía", interruptor mes/año, tres planes y resumen de pago dinámico */
+:root {
+  --bg: #ffffff;
+  --surface: #f5f8fa;
+  --fg: #4a4a4a;
+  --fg-strong: #2f3438;
+  --muted: #7b858c;
+  --line: #e1e8ec;
+  --teal: #52b9c9;
+  --navy: #2b5a8c;
+  --pink: #ec4899;
+  --amber: #f5a742;
+  --grad-blue: linear-gradient(160deg, var(--teal), var(--navy));
+  --grad-warm: linear-gradient(100deg, var(--pink), var(--amber));
+  --on-grad: #ffffff;
+  --card-sel: #ffffff;
+  --shadow: 0 18px 40px -22px rgba(43, 90, 140, .45);
+  --font: "Outfit", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1a22; --surface: #16242e; --fg: #c3ccd2; --fg-strong: #f1f5f7; --muted: #8b99a3;
+    --line: #26384a; --teal: #62c6d6; --navy: #3b73ad; --pink: #f0629f; --amber: #f7b45a;
+    --card-sel: #1b2d39; --shadow: 0 18px 40px -22px rgba(0, 0, 0, .8);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1a22; --surface: #16242e; --fg: #c3ccd2; --fg-strong: #f1f5f7; --muted: #8b99a3;
+  --line: #26384a; --teal: #62c6d6; --navy: #3b73ad; --pink: #f0629f; --amber: #f7b45a;
+  --card-sel: #1b2d39; --shadow: 0 18px 40px -22px rgba(0, 0, 0, .8);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.5;
+  padding-block: 40px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+h1, h2, h3, p { margin: 0; text-wrap: balance; }
+.grad-warm { background: var(--grad-warm); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad-blue { background: var(--grad-blue); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.eyebrow { font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--navy); }
+
+/* Hero */
+.top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.brand { font-weight: 300; font-size: 1.5rem; line-height: 1; letter-spacing: -.04em; color: var(--fg-strong); }
+.brand b { display: block; font-weight: 700; font-size: .95rem; letter-spacing: -.02em; }
+.hero { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.hero h1 { font-size: clamp(3rem, 11vw, 6.5rem); font-weight: 800; line-height: .92; letter-spacing: -.045em; color: var(--fg-strong); }
+.hero h1 span { display: block; font-size: .46em; font-weight: 400; letter-spacing: -.03em; margin-top: .1em; }
+.hero .sub { font-size: clamp(2rem, 6vw, 3.4rem); font-weight: 600; line-height: 1.05; letter-spacing: -.03em; margin-top: 18px; }
+.hero .sub small { display: block; font-weight: 400; }
+.lead { max-width: 62ch; font-size: 1.1rem; color: var(--fg); margin-top: 8px; }
+.what { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 16px; }
+.what div { background: var(--surface); border-radius: 14px; padding: 16px 18px; font-size: .95rem; }
+.what strong { display: block; color: var(--fg-strong); font-weight: 600; margin-bottom: 2px; }
+
+/* Composición */
+.section-title { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+.section-title h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 600; letter-spacing: -.03em; color: var(--fg-strong); line-height: 1.1; }
+.section-title p { max-width: 60ch; color: var(--muted); }
+.compose { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: stretch; }
+.plus-sign { align-self: center; font-size: 2.4rem; font-weight: 300; color: var(--muted); }
+.part { border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.part.licence { background: var(--grad-blue); color: var(--on-grad); box-shadow: var(--shadow); }
+.part.member { background: var(--surface); border: 1.5px solid var(--line); }
+.part h3 { font-size: 1.6rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.1; }
+.part .tag { font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .9; }
+.licence .tag { color: #dff4f8; }
+.member h3 { color: var(--fg-strong); }
+.part ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.part li { position: relative; padding-left: 22px; font-size: .97rem; }
+.part li::before { content: ""; position: absolute; left: 0; top: .5em; width: 10px; height: 10px; border-radius: 50%; background: currentColor; opacity: .55; }
+.member li::before { background: var(--grad-warm); opacity: 1; }
+.part .note { font-size: .88rem; opacity: .85; border-top: 1px solid rgba(255,255,255,.35); padding-top: 12px; }
+.member .note { border-top-color: var(--line); color: var(--muted); opacity: 1; }
+.lic-prices { display: flex; gap: 8px; flex-wrap: wrap; }
+.lic-prices span { background: rgba(255,255,255,.18); border-radius: 999px; padding: 5px 13px; font-size: .88rem; font-weight: 500; }
+.lic-prices b { font-weight: 700; }
+
+/* Interruptor */
+.plans-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+.plans-head .section-title { margin: 0; }
+.switch { display: inline-flex; background: var(--surface); border: 1.5px solid var(--line); border-radius: 999px; padding: 4px; position: relative; }
+.switch button { font: inherit; font-weight: 600; font-size: .95rem; border: 0; background: transparent; color: var(--muted); padding: 10px 20px; border-radius: 999px; cursor: pointer; position: relative; z-index: 1; transition: color .2s; }
+.switch button[aria-pressed="true"] { color: #fff; }
+.switch .pill { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 999px; background: var(--grad-warm); transition: transform .25s ease; }
+.switch[data-on="1"] .pill { transform: translateX(100%); }
+.controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.fx { flex-basis: 100%; font-size: .8rem; color: var(--muted); text-align: right; }
+.cop .price .amt { font-size: 2.3rem; letter-spacing: -.03em; }
+.cop .price .cur { font-size: 1.3rem; }
+@media (max-width: 880px) { .fx { text-align: left; } }
+button:focus-visible, input:focus-visible + .plan { outline: 3px solid var(--teal); outline-offset: 3px; }
+
+/* Planes */
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; align-items: stretch; }
+.plan-wrap { position: relative; display: flex; min-width: 0; }
+.plan-wrap input { position: absolute; opacity: 0; inset: 0; cursor: pointer; z-index: 0; margin: 0; }
+.plan { cursor: pointer; }
+.plan { flex: 1; border: 1.5px solid var(--line); border-radius: 22px; padding: 26px 24px; display: flex; flex-direction: column; gap: 18px; background: var(--bg); transition: transform .2s, box-shadow .2s, border-color .2s; min-width: 0; }
+.plan-wrap:hover .plan { transform: translateY(-3px); }
+.plan-wrap input:checked + .plan { border-color: transparent; background: linear-gradient(var(--card-sel), var(--card-sel)) padding-box, var(--grad-warm) border-box; border: 2px solid transparent; box-shadow: var(--shadow); }
+.plan { position: relative; }
+.save { position: absolute; top: -12px; right: 18px; background: var(--grad-warm); color: #fff; font-size: .78rem; font-weight: 700; letter-spacing: .02em; padding: 6px 12px; border-radius: 999px; box-shadow: 0 8px 18px -10px rgba(236,72,153,.7); z-index: 3; }
+.was { font-size: .85rem; color: var(--muted); margin-top: 6px; }
+.sw-save { font-style: normal; font-size: .68rem; font-weight: 700; margin-left: 6px; padding: 2px 7px; border-radius: 999px; background: var(--grad-warm); color: #fff; white-space: nowrap; }
+.plan .name { font-size: 1.9rem; font-weight: 700; letter-spacing: -.03em; line-height: 1; color: var(--fg-strong); }
+.plan .pitch { font-size: .95rem; color: var(--muted); min-height: 3em; }
+.price { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.price .cur { font-size: 1.6rem; font-weight: 600; }
+.price .amt { font-size: 3.4rem; font-weight: 700; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.price .per { font-size: 1.05rem; font-weight: 500; color: var(--muted); }
+.price-label { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.onb { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; background: var(--surface); border-radius: 12px; padding: 11px 14px; font-size: .92rem; }
+.onb b { font-size: 1.15rem; font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; }
+:root[data-theme="dark"] .onb b { color: var(--teal); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .onb b { color: var(--teal); } }
+.feats { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: .94rem; }
+.feats li { display: flex; gap: 10px; align-items: flex-start; }
+.feats li::before { content: ""; flex: none; width: 17px; height: 17px; margin-top: 3px; border-radius: 50%; background: var(--grad-blue); mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect width='16' height='16' fill='none'/%3E%3C/svg%3E") center / contain no-repeat, linear-gradient(#000, #000); -webkit-mask-composite: source-over; }
+.feats li.pro::before { background: var(--grad-warm); }
+.feats li.pro { color: var(--fg-strong); font-weight: 500; }
+.feats .k { display: block; color: var(--fg-strong); font-weight: 600; }
+.feats .v { display: block; color: var(--navy); font-weight: 500; font-size: .92rem; }
+:root[data-theme="dark"] .feats .v { color: var(--teal); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .feats .v { color: var(--teal); } }
+.feats li { display: grid; grid-template-columns: 17px 1fr; column-gap: 10px; align-items: start; }
+.feats li::before { grid-column: 1; grid-row: 1; }
+.fh { position: relative; z-index: 3; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; grid-column: 2; grid-row: 1; width: 100%; padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; border-radius: 8px; }
+.fh .ft { min-width: 0; }
+.chev { flex: none; width: 22px; height: 22px; margin-top: 1px; border-radius: 50%; background: var(--surface); display: grid; place-items: center; transition: transform .2s; }
+.chev::after { content: ""; width: 6px; height: 6px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: translateY(-1px) rotate(45deg); }
+.fh[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.fh:hover .chev { background: var(--line); }
+.fh:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+.feats .d[hidden] { display: none; }
+.feats .d { grid-column: 2; grid-row: 2; margin-right: 32px; margin-top: 3px; font-size: .84rem; line-height: 1.45; color: var(--muted); text-wrap: pretty; }
+.feats { gap: 14px; }
+.plan .pick { margin-top: auto; font-size: .85rem; font-weight: 600; color: var(--muted); text-align: center; padding-top: 4px; }
+.plan-wrap input:checked + .plan .pick { color: var(--pink); }
+
+/* Resumen */
+.summary { background: var(--surface); border-radius: 24px; padding: 28px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center; }
+.summary h2 { font-size: 1.6rem; font-weight: 600; letter-spacing: -.02em; color: var(--fg-strong); line-height: 1.15; }
+.summary p { color: var(--muted); margin-top: 8px; max-width: 46ch; }
+.rows { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.row { display: flex; justify-content: space-between; gap: 12px; font-size: 1rem; padding-bottom: 10px; border-bottom: 1px dashed var(--line); }
+.row b { font-weight: 600; color: var(--fg-strong); font-variant-numeric: tabular-nums; }
+.row.total { border: 0; padding: 4px 0 0; align-items: baseline; }
+.row.total span { font-weight: 600; color: var(--fg-strong); }
+.row.total b { font-size: 2.1rem; font-weight: 700; letter-spacing: -.03em; }
+.row.total small { font-size: .95rem; font-weight: 500; color: var(--muted); margin-left: 4px; }
+.after { font-size: .88rem; color: var(--muted); }
+.legal { font-size: .82rem; color: var(--muted); max-width: 90ch; }
+
+@media (max-width: 880px) {
+  .plans { grid-template-columns: 1fr; }
+  .compose { grid-template-columns: 1fr; }
+  .plus-sign { text-align: center; line-height: 1; }
+  .summary { grid-template-columns: 1fr; }
+  .plan .pitch { min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="top">
+      <div class="eyebrow">Propuesta comercial</div>
+      <div class="brand" aria-label="Conversion Chat">Conversion<b>CHAT</b></div>
+    </div>
+    <div class="hero">
+      <h1>PLANES<span>Y PRECIOS</span></h1>
+      <div class="sub"><span class="grad-warm">Agentes IA</span><small class="grad-warm">Comerciales</small></div>
+      <p class="lead">Agentes conversacionales comerciales que atienden a tus clientes, responden sus dudas y dan seguimiento a cada oportunidad de venta, todo desde un portal administrativo donde tú tienes el control.</p>
+
+    </div>
+  </header>
+
+  <section aria-labelledby="t-compose">
+    <div class="section-title">
+      <span class="eyebrow">Cómo se compone tu inversión</span>
+      <h2 id="t-compose">Licencia inicial + membresía del agente</h2>
+      <p>Cada plan suma dos conceptos: el onboarding que activa tu portal administrativo y la membresía que mantiene a tu agente trabajando, mes a mes o por año.</p>
+    </div>
+    <div class="compose">
+      <div class="part licence">
+        <span class="tag">Licencia inicial · Pago anual</span>
+        <h3>Onboarding + Portal administrativo</h3>
+        <p>El onboarding integra el portal administrativo. Es tu suscripción de administración por 1 año.</p>
+        <ul>
+          <li>Implementación y administración del agente + integraciones</li>
+          <li>Actualización de información empresarial</li>
+          <li>Visualización de procesos en tiempo real</li>
+          <li>Reportes estadísticos comerciales</li>
+          <li>Soporte técnico</li>
+        </ul>
+        <div class="lic-prices" aria-label="Precio del onboarding"><span>Onboarding <b id="lic-price">$349 USD</b></span></div>
+      </div>
+      <div class="plus-sign" aria-hidden="true">+</div>
+      <div class="part member">
+        <span class="tag" style="color: var(--pink)">Membresía &amp; activación</span>
+        <h3>Tu agente activo, mensual o anual</h3>
+        <p>Define la capacidad de tu agente: mensajes, agentes, control humano, audio, integraciones y nivel de soporte. Cambia entre mensual y anual abajo.</p>
+        <ul>
+          <li>Mensajes incluidos cada mes</li>
+          <li>Agentes en WhatsApp o website</li>
+          <li>Control humano sobre las conversaciones</li>
+          <li>Almacenamiento para imágenes y videos</li>
+          <li>Agenda, CRM y seguimiento según el plan</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-plans">
+    <div class="plans-head">
+      <div class="section-title">
+        <span class="eyebrow">Elige tu plan</span>
+        <h2 id="t-plans">Tres planes, una ruta de crecimiento</h2>
+        <p>Selecciona un plan para ver tu inversión al final.</p>
+      </div>
+      <div class="controls">
+        <div class="switch" id="switch" data-on="0" role="group" aria-label="Modalidad de pago">
+          <span class="pill"></span>
+          <button type="button" data-mode="mensual" aria-pressed="true">Mensual</button>
+          <button type="button" data-mode="anual" aria-pressed="false">Anual</button>
+        </div>
+        <div class="switch" id="cswitch" data-on="0" role="group" aria-label="Moneda">
+          <span class="pill"></span>
+          <button type="button" data-cur="USD" aria-pressed="true">USD</button>
+          <button type="button" data-cur="COP" aria-pressed="false">COP</button>
+        </div>
+        <div class="fx" id="fx" hidden>Conversión a 1 USD = $3.500 COP, redondeada hacia arriba al millar.</div>
+      </div>
+    </div>
+    <div class="plans" id="plans" role="radiogroup" aria-label="Planes"></div>
+  </section>
+
+  <section class="summary" aria-live="polite">
+    <div>
+      <span class="eyebrow">Tu inversión</span>
+      <h2 id="sum-title">Plan Plus</h2>
+      <p id="sum-text"></p>
+    </div>
+    <div class="rows">
+      <div class="row"><span>Onboarding · licencia 1 año</span><b id="sum-onb"></b></div>
+      <div class="row"><span id="sum-mem-label">Membresía</span><b id="sum-mem"></b></div>
+      <div class="row total"><span>Primer pago</span><span><b id="sum-total"></b><small id="sum-code">USD</small></span></div>
+      <div class="after" id="sum-after"></div>
+    </div>
+  </section>
+
+  <p class="legal">Precios en dólares estadounidenses (USD); la vista en pesos (COP) usa una conversión de 3.500 por dólar, redondeada hacia arriba al millar. Los costos de terceros, como WhatsApp, Google Calendar, CRM o pasarelas de pago, no se asumen incluidos. Capacidades y precios sujetos a confirmación contractual y a la configuración de cada cuenta.</p>
+</div>
+
+<script>
+(function () {
+  var D = {
+    agentes: "Asistentes de IA que conversan con tus clientes las 24 horas. Más agentes te permiten cubrir más líneas o canales al mismo tiempo.",
+    msgs: "El volumen de conversación que tu plan cubre cada mes. Atiendes a más clientes sin que tu equipo esté pegado al teléfono.",
+    humano: "Un número administrador al que llegan notificaciones de los chats que necesitan atención personalizada. Al intervenir, el agente se apaga automáticamente en ese chat para que respondas solicitudes rápidas sin cruces.",
+    media: "Espacio para las imágenes y videos de tus productos o promociones que el agente envía a tus clientes. Vendes mostrando, no solo explicando.",
+    audioTxt: "El agente entiende los audios que te envían tus clientes y responde por texto. No pierdes ventas por mensajes de voz.",
+    audioVoz: "El agente entiende los audios y responde con una voz propia para tu marca. La atención se siente más cercana y natural.",
+    linksOwn: "El agente comparte en el chat los enlaces que tú ya tienes en otras plataformas, como tu catálogo, tu web o tu agenda actual. El cliente llega al lugar correcto sin que tengas que enviarlo a mano.",
+    links: "El agente comparte enlaces a otras plataformas, como pasarelas de pago, para que el cliente avance hacia la compra sin salir del chat.",
+    cal: "Sistema de agendamiento de nuestra plataforma, sincronizado con tu Google Calendar. Tus clientes reservan conversando con el agente y no hay citas cruzadas.",
+    crm: "Conexión con algunos sistemas CRM: los datos de cada contacto y conversación pasan a tu CRM. Tu equipo comercial hace seguimiento ordenado de cada oportunidad. Consulta qué sistemas están disponibles.",
+    lead: "El agente retoma contacto con quienes mostraron interés y no compraron. Recuperas ventas que se habían enfriado.",
+    soporte: "Ayuda técnica de nuestro equipo cuando la necesitas. Entre menor el tiempo de respuesta, menos tiempo sin operar."
+  };
+  var PLANS = [
+    { id: "starter", name: "Starter", onb: 349, mes: 99, anio: 990,
+      pitch: "Para empezar a atender y vender por WhatsApp sin complicaciones.",
+      feats: [
+        { t: "Agentes", v: "1 agente en WhatsApp", d: D.agentes },
+        { t: "Mensajes incluidos", v: "3.000 por mes", d: D.msgs },
+        { t: "Conexión de control humano", v: "1 control", d: D.humano },
+        { t: "Almacenamiento multimedia", v: "250 MB", d: D.media },
+        { t: "Lectura de audio", v: "Lee audios y responde en texto", d: D.audioTxt },
+        { t: "Enlaces", v: "Los que ya tienes con otras plataformas", d: D.linksOwn },
+        { t: "Soporte técnico", v: "Atención a las 24 horas", d: D.soporte }
+      ] },
+    { id: "plus", name: "Plus", onb: 349, mes: 149, anio: 1490,
+      pitch: "Agenda propia y soporte más rápido para negocios con volumen creciente.",
+      feats: [
+        { t: "Agentes", v: "2 agentes en WhatsApp", d: D.agentes },
+        { t: "Mensajes incluidos", v: "8.000 por mes", d: D.msgs },
+        { t: "Conexión de control humano", v: "2 controles", d: D.humano },
+        { t: "Almacenamiento multimedia", v: "500 MB", d: D.media },
+        { t: "Lectura de audio", v: "Lee audios y responde en texto", d: D.audioTxt },
+        { t: "Sistema de agendamiento", v: "Plataforma propia, sincroniza con Google Calendar", d: D.cal, pro: true },
+        { t: "Enlaces a otras plataformas", v: "Pasarelas de pago y más", d: D.links },
+        { t: "Soporte técnico", v: "Atención a las 12 horas", d: D.soporte }
+      ] },
+    { id: "business", name: "Business", onb: 349, mes: 289, anio: 2890,
+      pitch: "Atención, agenda, CRM y seguimiento de leads trabajando como un solo equipo.",
+      feats: [
+        { t: "Agentes", v: "3 agentes en WhatsApp o website", d: D.agentes },
+        { t: "Mensajes incluidos", v: "20.000 por mes", d: D.msgs },
+        { t: "Conexión de control humano", v: "3 controles", d: D.humano },
+        { t: "Almacenamiento multimedia", v: "1 GB", d: D.media },
+        { t: "Audio con voz propia", v: "Lee audios y responde con voz", d: D.audioVoz },
+        { t: "Enlaces", v: "Pasarelas de pago y otras plataformas", d: D.links },
+        { t: "Sistema de agendamiento", v: "Sincronizado con Google Calendar", d: D.cal, pro: true },
+        { t: "Integraciones CRM", v: "Conexión con algunos sistemas", d: D.crm, pro: true },
+        { t: "Recalentamiento de leads", v: "Incluido", d: D.lead, pro: true },
+        { t: "Soporte técnico", v: "Atención inmediata", d: D.soporte }
+      ] }
+  ];
+  var pct = function (p) { return Math.round((1 - p.anio / (p.mes * 12)) * 100); };
+
+  var state = { mode: "mensual", plan: "plus", cur: "USD" };
+  var RATE = 3500;
+  var conv = function (usd) { return state.cur === "COP" ? Math.ceil(usd * RATE / 1000) * 1000 : usd; };
+  var num = function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, "."); };
+  var fmt = function (n) { return "$" + num(n); };
+  var $ = function (s) { return document.querySelector(s); };
+  var plansEl = $("#plans");
+
+  PLANS.forEach(function (p) {
+    var li = p.feats.map(function (f) {
+      return '<li' + (f.pro ? ' class="pro"' : '') + '><button type="button" class="fh" aria-expanded="false"><span class="ft"><span class="k">' + f.t + '</span><span class="v">' + f.v + '</span></span><span class="chev" aria-hidden="true"></span></button><p class="d" hidden>' + f.d + '</p></li>';
+    }).join("");
+    var w = document.createElement("div");
+    w.className = "plan-wrap";
+    w.innerHTML =
+      '<input type="radio" name="plan" id="r-' + p.id + '" value="' + p.id + '" aria-label="Plan ' + p.name + '">' +
+      '<div class="plan"><span class="save" data-save hidden>2 meses gratis · −' + pct(p) + '%</span>' +
+        '<div class="name">' + p.name + '</div>' +
+        '<p class="pitch">' + p.pitch + '</p>' +
+        '<div><div class="price-label" data-lbl>Membresía mensual</div>' +
+        '<div class="price"><span class="cur">$</span><span class="amt" data-amt="' + p.id + '"></span><span class="per"><span data-code>USD</span> <span data-per>/ mes</span></span></div><div class="was" data-was="' + p.id + '" hidden></div></div>' +
+        '<div class="onb"><span>+ Onboarding (1 año)</span><b data-onb="' + p.id + '"></b></div>' +
+        '<ul class="feats">' + li + '</ul>' +
+        '<div class="pick" data-pick>Elegir este plan</div>' +
+      '</div>';
+    plansEl.appendChild(w);
+  });
+
+  var animTimers = {};
+  function tween(el, to) {
+    var from = Number(el.dataset.v || 0);
+    el.dataset.v = to;
+    if (animTimers[el.dataset.amt]) cancelAnimationFrame(animTimers[el.dataset.amt]);
+    var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || from === to) { el.textContent = fmt(to).slice(1); return; }
+    var t0 = performance.now(), dur = 380;
+    (function step(t) {
+      var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = fmt(from + (to - from) * e).slice(1);
+      if (k < 1) animTimers[el.dataset.amt] = requestAnimationFrame(step);
+    })(t0);
+  }
+
+  function render() {
+    var anual = state.mode === "anual";
+    var cop = state.cur === "COP";
+    document.body.classList.toggle("cop", cop);
+    $("#switch").dataset.on = anual ? "1" : "0";
+    $("#cswitch").dataset.on = cop ? "1" : "0";
+    $("#fx").hidden = !cop;
+    document.querySelectorAll("#switch button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.mode === state.mode));
+    });
+    document.querySelectorAll("#cswitch button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.cur === state.cur));
+    });
+    document.querySelectorAll("[data-code]").forEach(function (e) { e.textContent = state.cur; });
+    $("#sum-code").textContent = state.cur;
+    $("#lic-price").textContent = fmt(conv(349)) + " " + state.cur;
+    PLANS.forEach(function (p) {
+      tween(document.querySelector('[data-amt="' + p.id + '"]'), conv(anual ? p.anio : p.mes));
+      document.querySelector('[data-onb="' + p.id + '"]').textContent = fmt(conv(p.onb));
+      var r = $("#r-" + p.id);
+      r.checked = state.plan === p.id;
+      r.closest(".plan-wrap").querySelector("[data-pick]").textContent = state.plan === p.id ? "Plan seleccionado" : "Elegir este plan";
+    });
+    document.querySelectorAll("[data-lbl]").forEach(function (e) { e.textContent = anual ? "Membresía anual" : "Membresía mensual"; });
+    document.querySelectorAll("[data-save]").forEach(function (e) { e.hidden = !anual; });
+    PLANS.forEach(function (q) {
+      var w = document.querySelector('[data-was="' + q.id + '"]');
+      w.hidden = !anual;
+      w.innerHTML = "<s>" + fmt(conv(q.mes * 12)) + "</s> pagando 12 meses";
+    });
+    document.querySelectorAll("[data-per]").forEach(function (e) { e.textContent = anual ? "/ año" : "/ mes"; });
+
+    var p = PLANS.filter(function (x) { return x.id === state.plan; })[0];
+    var mem = conv(anual ? p.anio : p.mes), onb = conv(p.onb), cc = " " + state.cur;
+    $("#sum-title").textContent = "Plan " + p.name + " · pago " + state.mode;
+    $("#sum-text").textContent = anual
+      ? "Pagas la membresía de un año completo junto con tu licencia de onboarding."
+      : "Pagas tu licencia de onboarding y la primera mensualidad. Luego solo la membresía de cada mes.";
+    $("#sum-onb").textContent = fmt(onb);
+    $("#sum-mem-label").textContent = anual ? "Membresía anual (12 meses)" : "Membresía del primer mes";
+    $("#sum-mem").textContent = fmt(mem);
+    $("#sum-total").textContent = fmt(onb + mem);
+    $("#sum-after").textContent = anual
+      ? "Ahorras " + fmt(conv(p.mes * 12) - mem) + cc + " frente a pagar 12 meses (2 meses gratis). Al cumplirse el año se renueva la membresía de " + fmt(mem) + cc + "."
+      : "Después: " + fmt(mem) + cc + " cada mes.";
+  }
+
+  document.querySelectorAll("#switch button").forEach(function (b) {
+    b.addEventListener("click", function () { state.mode = b.dataset.mode; render(); });
+  });
+  document.querySelectorAll("#cswitch button").forEach(function (b) {
+    b.addEventListener("click", function () { state.cur = b.dataset.cur; render(); });
+  });
+  plansEl.addEventListener("click", function (e) {
+    var b = e.target.closest(".fh");
+    if (!b) {
+      var wrap = e.target.closest(".plan-wrap");
+      if (wrap && e.target.type !== "radio") { state.plan = wrap.querySelector("input").value; render(); }
+      return;
+    }
+    var open = b.getAttribute("aria-expanded") === "true";
+    b.setAttribute("aria-expanded", String(!open));
+    b.nextElementSibling.hidden = open;
+  });
+  plansEl.addEventListener("change", function (e) {
+    if (e.target.name === "plan") { state.plan = e.target.value; render(); }
+  });
+  render();
+})();
+</script>
+
+</body></html>
